@@ -6,9 +6,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cart: [],
+    consentuaUid: ''
   },
   mutations: {
     cartAdd (state, payload) {
+      console.log(state.cart);
+      
       let x = state.cart.find(x => x.id === payload.id)
       if (x) {
         x.quantity += payload.amount
@@ -34,15 +37,20 @@ export default new Vuex.Store({
 			}
     },
     clearCartStorage(state){
-      state.cart.replaceState()
+      state.cart = [];
+      localStorage.removeItem("cupCart");
     }
   },
   getters: {
     cartTotal: state => {
       let x = 0
-      state.cart.forEach(i => {
-        x = x + i.quantity
-      });
+      for (let i = 0; i < state.cart.length; i++) {
+        x = x + state.cart[i].quantity
+        
+      }
+      // state.cart.forEach(i => {
+      //   x = x + i.quantity
+      // });
       return x
     }
   }

@@ -9,6 +9,9 @@
           <el-menu-item index="2">
             <router-link to="/about">About</router-link>
           </el-menu-item>
+          <el-menu-item index="3">
+            <a href="https://github.com/mrsideshowjack/cup-shop">Github</a>
+          </el-menu-item>
         </el-menu>
         <Cart />
       </el-header>

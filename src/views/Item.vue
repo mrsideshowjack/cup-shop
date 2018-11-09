@@ -1,17 +1,23 @@
 <template>
-    <div id="Potato" class="grid-container">
+    <div id="Item" class="grid-container">
       <div class="grid-area-img">
-        <img :src="potato.imgurl"/>
+        <img :src="item.imgurl"/>
       </div>
       <div class="grid-area-main">
-        <p>{{ potato.description }}</p>
-        <el-tag>Origin: {{ potato.origin }}</el-tag>
+        <p>{{ item.description }}</p>
+        <el-tag>Origin: {{ item.origin }}</el-tag>
       </div>
       <div class="grid-area-title">
-        <h1>{{ potato.name }}</h1>
+        <h1>{{ item.name }} <el-rate
+          v-model="randRating"
+          disabled
+          show-score
+          text-color="#ff9900">
+        </el-rate></h1>
+          
         <span id="cta-btn-contain">
           <el-input-number v-model="quantity" :min="1" :max="10"></el-input-number>
-          <el-button type="success" icon="el-icon-circle-plus-outline" v-on:click="cartAdd(potatoId)">Add to cart</el-button>
+          <el-button type="success" icon="el-icon-circle-plus-outline" v-on:click="cartAdd(itemId)">Add to cart</el-button>
         </span>
       </div>
       <div class="grid-area-back">
@@ -25,24 +31,27 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'Potato',
-  props: ['potatoId'],
+  name: 'item',
+  props: ['itemId'],
   data () {
     return {
-      potato: null,
+      item: null,
       quantity: 1
     }
   },
   computed: {
-    potatoId() {
-      return this.$route.params.potatoId
+    itemId() {
+      return this.$route.params.itemId
     },
+    randRating(){
+      return (Math.random() * (5.00 - 1.00 + 1.00) + 1.00).toFixed(1)
+    }
   },
   mounted () {
-    let url = process.env.VUE_APP_API_URL + '/single/' + this.potatoId
+    let url = process.env.VUE_APP_API_URL + '/single/' + this.itemId
     axios
       .get(url)
-      .then(response => (this.potato = response.data[0]))
+      .then(response => (this.item = response.data[0]))
   },
     methods:{
     cartAdd (itemId) {
@@ -51,6 +60,12 @@ export default {
         id: itemId,
         amount: this.quantity
         })
+      this.$notify({
+          title: 'Added to cart',
+          message: 'An item has been added to your cart. Click here to checkout',
+          type: 'success',
+          onClick: this.navigateCheckout
+      });
     },
     cartRemove (itemId) {
     this.$store.commit({
@@ -58,6 +73,9 @@ export default {
         id: itemId,
         amount: quantity
         })
+    },
+    navigateCheckout(){
+        this.$router.push('/Checkout')
     }
   },
 }
@@ -65,7 +83,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  #Potato.grid-container {
+  #Item.grid-container {
   display: grid;
   height: 100%;
   grid-template-columns: 0.1fr 1.6fr 1.3fr;
@@ -78,12 +96,12 @@ export default {
 .grid-area-img { 
   grid-area: grid-area-img;
   padding: 0.3rem;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.52);
  }
 
 .grid-area-img img{
     width: 39vw;
     height: 27vw;
+    box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 .grid-area-main { 

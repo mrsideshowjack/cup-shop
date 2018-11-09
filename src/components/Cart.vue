@@ -1,4 +1,4 @@
-2<template>
+<template>
     <div id="Cart">
     <el-badge :value="cartTotal" v-if="cartTotal >=1" class="item">
       <el-button @click="dialogVisible = true">
@@ -13,137 +13,48 @@
     <el-dialog
     title="Cart"
     :visible.sync="dialogVisible"
-    fullscreen>
-    <div id="cart-actions">
-        <span>Total: <el-tag>${{ totalPrice }}</el-tag></span>
-        <el-button @click="clearCart" type="danger">Clear Cart</el-button>
-    </div>
-    <div v-for="item in cartDetail.data.data">
-        <div class="cart-item">
-        <img :src="item.imgurl" class="item-image">
-        <span class="item-name">{{ item.name }}</span>
-        <span class="item-description">{{ item.description }}</span>
-        <span class="item-price">${{ item.price }}</span>
-        </div>
-    </div>
-    <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
-    </span>
+    top="5vh"
+    width="1000px">
+        <CartList />
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">Close</el-button>
+            <el-button type="primary" @click="navigateCheckout">Checkout</el-button>
+        </span>
     </el-dialog>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import CartList from '@/components/CartList.vue'
 export default {
   name: 'Cart',
+  components: {
+    CartList
+  },
   methods:{
-      fistSentence: function(para){
-          let sen = para.match(/^(.*?)[.?!]\s/);
-          if (sen) {
-              return sen[0].toString()
-          } else{
-              return para
-          }
-      },
-    increment (itemId) {
-      this.$store.commit({
-        type: 'increment',
-        id:itemId,
-        amount: 1
-        })
-    },
-    decrement (itemId) {
-    this.$store.commit({
-        type: 'decrement',
-        id:'3',
-        amount: 1
-        })
-    },
-    openCart(){
-          this.dialogVisible = true
-          let url = process.env.VUE_APP_API_URL + '/selected'
-          axios
-          .post(url, this.cart)
-          .then(response => ( this.cartDetail = response ))
-          },
-    clearCart(){
-        console.log('clearing cart');
-        
-        let resetValue = {data:[],amount:0};
-        this.$store.replaceState(resetValue);
-        this.cartDetail = resetValue;
+    navigateCheckout (){
+        this.dialogVisible = false
+        this.$router.push('/Checkout')
     }
   },
   data() {
       return {
         dialogVisible: false,
-        cartDetail: {data:[],amount:0}
       };
     },
   computed: {
-    cart () {
-	    return this.$store.state.cart
-    },
     cartTotal () {
         return this.$store.getters.cartTotal
     },
-    totalPrice (){   
-    return +(Math.round(this.cartDetail.data.amount + "e+2")  + "e-2");
-    }
-  },
-    mounted () {
-    let url = process.env.VUE_APP_API_URL + '/selected'
-    axios
-      .post(url, this.cart)
-      .then(response => ( this.cartDetail = response ))
-    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#Cart{
-
-}
-
-#Cart #cart-icon{
-    /* display: inline; */
-}
-#cart-actions{
-    width: 80%;    
-    margin: 0px auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.cart-item{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-bottom: 2px solid grey;
-}
-
-.cart-item img.item-image{
-    max-height: 200px;
-    padding: 1rem 0.2rem;
-}
-
-.cart-item span{
-    padding: 1rem;
-    text-align: left;
-}
-
-.cart-item span.item-name,
-.cart-item span.item-price{
-    font-weight: 600;
-    flex: 1;
-}
-
-.cart-item span.item-name{
-    min-width: 150px;
-    text-align: center;
-}
+/* #Cart .el-dialog {
+ max-width: 1000px;
+} */
 
 </style>

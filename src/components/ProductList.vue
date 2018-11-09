@@ -1,17 +1,17 @@
 <template>
     <div id="ProductList">
-        <div v-for="potato in potatoes">
+        <div v-for="item in itemes" :key="item.id">
             <el-card :body-style="{ padding: '0px' }" class="product-card">
-            <img :src="potato.imgurl" class="image">
+            <img :src="item.imgurl" class="image">
             <div style="padding: 14px;">
-                <h3>{{ potato.name }} <el-tag>${{ potato.price }}</el-tag></h3>
+                <h3>{{ item.name }} <el-tag>${{ item.price }}</el-tag></h3>
                 
-                <p>{{ fistSentence(potato.description) }}</p>
+                <p>{{ fistSentence(item.description) }}</p>
                 <div class="btn-contain bottom clearfix">
-                    <router-link :to="{ name: 'potato', params: { potatoId: potato.id }}">
+                    <router-link :to="{ name: 'item', params: { itemId: item.id }}">
                     <el-button class="button">View</el-button>
                     </router-link>
-                    <el-button type="success" icon="el-icon-circle-plus-outline" v-on:click="cartAdd(potato.id)">Add to cart</el-button>
+                    <el-button type="success" icon="el-icon-circle-plus-outline" v-on:click="cartAdd(item.id)">Add to cart</el-button>
                 </div>
             </div>
             </el-card>
@@ -25,14 +25,14 @@ export default {
   name: 'ProductList',
   data () {
     return {
-      potatoes: null,
+      itemes: null,
     }
   },
   mounted () {
     console.log()
     axios
       .get(process.env.VUE_APP_API_URL + '/all')
-      .then(response => (this.potatoes = response.data))
+      .then(response => (this.itemes = response.data))
   },
   methods:{
       fistSentence: function(para){
@@ -49,6 +49,12 @@ export default {
         id:itemId,
         amount: 1
         })
+      this.$notify({
+          title: 'Added to cart',
+          message: 'An item has been added to your cart. Click here to checkout',
+          type: 'success',
+          onClick: this.navigateCheckout
+        });
     },
     cartRemove (itemId) {
     this.$store.commit({
@@ -56,6 +62,9 @@ export default {
         id:itemId,
         amount: 1
         })
+    },
+    navigateCheckout(){
+        this.$router.push('/Checkout')
     }
   },
   computed: {
