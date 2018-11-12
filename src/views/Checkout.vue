@@ -82,25 +82,42 @@ export default {
       onSubmit() {
         alert('You bought nothing!')
         console.log(this.form);
-      }
+      },
+        cb_ready(msg){
+            if (!this.$store.state.consentuaUID) {
+                this.$store.commit({
+                    type: 'updateConsentuaUID',
+                    value: msg.message.uid
+                }) 
+            }
+        },
+        cb_set(msg){
+            //update cookie when consent is set
+            console.log("Consent received from Consentua", msg);
+            this.$store.commit({
+                type: 'updateConsentuaConsents',
+                value: msg.message.consents
+            })
+        },
+        cb_msg(msg){
+            console.warn("Consent received from Consentua", msg);
+        }
     },
     mounted() {
         var cid = '57'; // Customer ID
         var sid = '105'; // Consentua service ID
         var skey = 'fa83fb53-1c0b-4ee0-b4bb-a5efe6fd4360'; // Consentua service key
         var tids = ['100','98']; // Template ID
-        var uid = false;
-
-        var cb = function(msg) {
-            console.log("Consent received from Consentua", msg);
-        };
 
         for (let i = 0; i < tids.length; i++) {
             let iframe = document.createElement("iframe");
             iframe.id = "consentua-iframe-" + [i];
             iframe.class = "consentua-iframe";
             document.getElementById('checkout-consentua').appendChild(iframe);
-            let cwrap = new ConsentuaUIWrapper(iframe, cid, uid, tids[i], sid, skey, cb, 'en', {ix:"https://kni-test-node.herokuapp.com/custom-interaction.html"});
+            let cwrap = new ConsentuaUIWrapper(iframe, cid, this.$store.state.consentuaUID, tids[i], sid, skey, this.cb_msg, 'en', {ix:"https://kni-test-node.herokuapp.com/custom-interaction.html"});
+            // set cb
+            cwrap.onset = this.cb_set;
+            cwrap.onready = this.cb_ready;
         }
     },
 }

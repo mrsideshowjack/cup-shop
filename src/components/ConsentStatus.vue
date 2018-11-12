@@ -1,0 +1,150 @@
+<template>
+    <div id="ConsentStatus">
+        <svg width="30" height="35" viewBox="0 0 479 643" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="path-1-inside-1" fill="white">
+                <rect y="279" width="400" height="364" rx="21" />
+            </mask>
+            <rect y="279" width="400" height="364" rx="21" stroke="white" stroke-width="99" mask="url(#path-1-inside-1)" />
+            <path id="lock-path" class="lock-in" d="M51 289V148.973C51 -24.6572 339.569 -26.655 347 148.973V289" stroke="white"
+                  stroke-width="45" />
+            <path id="keyhole" fill-rule="evenodd" clip-rule="evenodd" d="M216 471.137C227.283 465.327 235 453.565 235 440C235 420.67 219.33 405 200 405C180.67 405 165 420.67 165 440C165 453.16 172.263 464.624 183 470.601V518C183 525.732 189.268 532 197 532H202C209.732 532 216 525.732 216 518V471.137Z"
+                  fill="white" />
+            <path id="tick-back" class="tick-in" d="M100 481L182.429 563.429C186.334 567.334 192.666 567.334 196.571 563.429L460 300"
+                  stroke="#9A1245" stroke-width="100" stroke-linejoin="round" />
+            <path id="tick-front" class="tick-in" d="M100 481L182.429 563.429C186.334 567.334 192.666 567.334 196.571 563.429L460 300"
+                  stroke="white" stroke-width="45" stroke-linejoin="round" />
+        </svg>
+        <div id="slide">Consent Dashboard</div>
+    </div>
+</template>
+<script>
+    export default {
+        name: 'ConsentStatus',
+        mounted() {
+            var tkf = document.getElementById('tick-front');
+            var tkb = document.getElementById('tick-back');
+            var lock = document.getElementById('lock-path');
+            var hole = document.getElementById('keyhole');
+            var slide = document.getElementById('slide');
+            var ConsentStatus = document.getElementById('ConsentStatus');
+
+            function iconOut(e) {
+                hole.classList.add('hidden');
+                tkf.classList.remove('tick-in');
+                tkb.classList.remove('tick-in');
+                tkf.classList.add('tick-out');
+                tkb.classList.add('tick-out');
+                lock.classList.remove('lock-in');
+                lock.classList.add('lock-out');
+            };
+
+            function iconIn(e) {
+                hole.classList.remove('hidden');
+                tkf.classList.remove('tick-out');
+                tkb.classList.remove('tick-out');
+                tkf.classList.add('tick-in');
+                tkb.classList.add('tick-in');
+                lock.classList.remove('lock-out');
+                lock.classList.add('lock-in');
+            };
+
+            function slideOut(e) {
+                slide.classList.remove('slide-in');
+                slide.classList.add('slide-out');
+            };
+
+            function slideIn(e) {
+                slide.classList.add('slide-in');
+                slide.classList.remove('slide-out');
+            };
+
+            ConsentStatus.addEventListener('mouseenter', function () {
+                iconOut();
+                slideOut();
+            });
+
+            ConsentStatus.addEventListener('mouseleave', function () {
+                //in
+                iconIn();
+                slideIn();
+            });
+
+            ConsentStatus.addEventListener('click', function () {
+                // window.location.href = '{{ site.url }}/consent-dashboard.html'
+            });
+        }
+    }
+</script>
+<style>
+    #ConsentStatus {
+        background: #9A1144;
+        position: fixed;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        bottom: 0;
+        left: 0;
+        padding: 0.6rem;
+        border-radius: 0px 1rem 0px 0px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    #tick-back {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        transition: all 0.2s cubic-bezier(0.18, 0.82, 0.68, 1);
+    }
+
+    #tick-front {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        transition: all 0.2s cubic-bezier(0.18, 0.82, 0.68, 1);
+    }
+
+    #lock-path {
+        stroke-dasharray: 1000;
+        transition: all 0.2s cubic-bezier(0.18, 0.82, 0.68, 1);
+    }
+
+    #keyhole {
+        transition: all 0.2s cubic-bezier(0, 1.23, 0.67, 1);
+        transition-delay: 0.1s;
+    }
+
+    #slide {
+        transition: all 0.2s cubic-bezier(0, 1.23, 0.67, 1);
+        transition-delay: 0.4s;
+        width: 0px;
+        overflow: hidden;
+        margin-left: 10px;
+    }
+
+    .tick-out {
+        stroke-dashoffset: 0 !important;
+        transition-delay: 0.2s !important;
+    }
+
+    .tick-in {
+        stroke-dashoffset: 1000 !important;
+        transition-delay: 0s !important;
+    }
+
+
+    .lock-out {
+        stroke-dashoffset: 0;
+    }
+
+    .lock-in {
+        stroke-dashoffset: -143;
+    }
+
+    .hidden {
+        opacity: 0.0;
+    }
+
+    .slide-out {
+        width: 150px !important;
+    }
+</style>

@@ -3,15 +3,14 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   state: {
     cart: [],
-    consentuaUid: ''
+    consentuaUID: false,
+    consentuaConsents: []
   },
   mutations: {
     cartAdd (state, payload) {
-      console.log(state.cart);
-      
       let x = state.cart.find(x => x.id === payload.id)
       if (x) {
         x.quantity += payload.amount
@@ -31,15 +30,40 @@ export default new Vuex.Store({
 			if(localStorage.getItem('cupCart')) {
         // Replace the state object with the stored item
         state.cart = JSON.parse(localStorage.getItem('cupCart'))
-				// this.replaceState(
-				// 	Object.assign(state.cart, JSON.parse(localStorage.getItem('cupCart')))
-				// );
+      }
+      if(localStorage.getItem('consentuaUID')) {
+        // Replace the state object with the stored item
+        state.consentuaUID = localStorage.getItem('consentuaUID')
 			}
     },
     clearCartStorage(state){
       state.cart = [];
       localStorage.removeItem("cupCart");
-    }
+    },
+    updateConsentuaUID (state, payload){
+      state.consentuaUID = payload.value
+      localStorage.setItem('consentuaUID', payload.value);
+    },
+    clearConsentuaUID(state){
+      state.consentuaUID = false;
+      localStorage.removeItem("consentuaUID");
+    },
+    updateConsentuaConsents (state, payload){
+      var x = {
+        id: Object.keys(payload.value)[0],
+        consent: payload.value[Object.keys(payload.value)[0]]
+      }
+      if (state.consentuaConsents.length == 0) {
+        state.consentuaConsents.push(x)
+      } else {
+        let t = state.consentuaConsents.find(y => y.id === x.id)
+        if (t) {
+          t.consent = x.consent
+        } else {
+          state.consentuaConsents.push(x)
+        }
+      }
+    },
   },
   getters: {
     cartTotal: state => {

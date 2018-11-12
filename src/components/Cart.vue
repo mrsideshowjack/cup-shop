@@ -53,8 +53,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* #Cart .el-dialog {
- max-width: 1000px;
-} */
+#Cart{
+  margin: 0.5rem;
+}
 
 </style>

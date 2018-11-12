@@ -6,26 +6,48 @@
 <script>
 export default {
     name: 'consent-dashboard',
+    methods:{
+        cb_ready(msg){
+            console.log("UID is:" + msg.message.uid);
+             if (!this.$store.state.consentuaUID) {
+                this.$store.commit({
+                    type: 'updateConsentuaUID',
+                    value: msg.message.uid
+                }) 
+            }
+        },
+        cb_set(msg){
+            //update cookie when consent is set
+            console.log("Consent received from Consentua", msg);
+            this.$store.commit({
+                type: 'updateConsentuaConsents',
+                value: msg.message.consents
+            })
+        },
+        cb_msg(msg){
+            console.warn("Consent received from Consentua", msg);
+        },
+        cb_onreceipt(msg){
+            console.log(msg);
+            
+        }
+    },
     mounted() {
-        // let websdkScript = document.createElement('script')
-        // websdkScript.setAttribute('src', 'https://websdk.consentua.com/websdk/consentua-embed.js.php')
-        // document.body.appendChild(websdkScript)
+        // Consentua
         var cid = '57'; // Customer ID
         var sid = '105'; // Consentua service ID
         var skey = 'fa83fb53-1c0b-4ee0-b4bb-a5efe6fd4360'; // Consentua service key
         var tids = ['63','100','98','999999']; // Template ID
-        var uid = false;
-
-        var cb = function(msg) {
-            console.log("Consent received from Consentua", msg);
-        };
-
         for (let i = 0; i < tids.length; i++) {
             let iframe = document.createElement("iframe");
             iframe.id = "consentua-iframe-" + [i];
             iframe.class = "consentua-iframe";
             document.getElementById('consent-dashboard').appendChild(iframe);
-            let cwrap = new ConsentuaUIWrapper(iframe, cid, uid, tids[i], sid, skey, cb, 'en');
+            let cwrap = new ConsentuaUIWrapper(iframe, cid, this.$store.state.consentuaUID, tids[i], sid, skey, this.cb_msg, 'en');
+            // set cb
+            cwrap.onset = this.cb_set;
+            cwrap.onready = this.cb_ready;
+            // cwrap.onreceipt = this.cb_onreceipt;
         }
     }
 }

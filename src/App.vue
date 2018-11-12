@@ -2,7 +2,7 @@
   <div id="app">
     <el-container>
       <el-header>
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" >
           <el-menu-item index="1">
             <router-link to="/">Home</router-link>
           </el-menu-item>
@@ -13,35 +13,42 @@
             <a href="https://github.com/mrsideshowjack/cup-shop">Github</a>
           </el-menu-item>
         </el-menu>
-        <Cart />
+          <ConsentuaInfo />
+          <Cart />
       </el-header>
       <el-main>
         <router-view />
       </el-main>
       <el-footer>
+        <CookieConsent />
+        <ConsentStatus />
         <router-link to="/consent-dashboard">Consent Dashboard</router-link>
       </el-footer>
     </el-container>
   </div>
 </template>
-
 <script>
 import Cart from '@/components/Cart.vue'
+import ConsentuaInfo from '@/components/ConsentuaInfo.vue'
+import CookieConsent from '@/components/CookieConsent.vue'
+import ConsentStatus from '@/components/ConsentStatus.vue'
 
 export default {
   components: {
-    Cart
+    Cart,
+    ConsentuaInfo,
+    CookieConsent
   },
-   mounted() {
-        let websdkScript = document.createElement('script')
-        websdkScript.setAttribute('src', 'https://websdk.consentua.com/websdk/consentua-embed.js.php')
-        document.body.appendChild(websdkScript)
+  mounted() {
    }
 }
 </script>
 
 
 <style>
+  body{
+    margin: 0px;
+  }
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -51,7 +58,7 @@ export default {
   }
 
   .el-header{
-        display: flex;
+    display: flex;
     justify-content: space-between;
   }
 </style>
