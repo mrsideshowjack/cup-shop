@@ -75,10 +75,6 @@ export default {
 #CartList #cart-list{
 overflow: auto;
 }
-
-#CartList #cart-icon{
-    /* display: inline; */
-}
 #cart-actions{
     width: 80%;    
     margin: 0px auto;

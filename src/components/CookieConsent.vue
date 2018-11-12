@@ -59,10 +59,6 @@ export default {
 </script>
 
 <style>
-#CookieConsent{
-    
-}
-
 iframe#cookie-consent-iframe{
     border: none;
     width: 100%;
