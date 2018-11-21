@@ -6,13 +6,18 @@ const cors = require('cors');
 // var serveStatic = require('serve-static');
 
 const env = process.env.ENV || 'local';
-const port = process.env.PORT || 3000;
 const host = process.env.HOST || 'localhost';
+const port = process.env.PORT || 3000;
+process.env.VUE_APP_API_URL = 'https://' + host + ':' + port
+console.log('running on ' + env, host + ':' + port);
+
 const doLogging = true;
 
 const db = require('./controllers/db.js');
 
 var app = express();
+
+
 //------------------------------------------------------------------------------
 // Request Pre-processing & middleware
 //------------------------------------------------------------------------------
@@ -29,6 +34,7 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, application/json");
     next();
 });
+
 
 
 //------------------------------------------------------------------------------
