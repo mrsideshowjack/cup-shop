@@ -10,7 +10,10 @@
             <span v-for="item in consentuaConsents" :key="item.id">{{item.id}}:{{item.consent}} <span v-if="item.consent">✅</span> <span v-if="!item.consent">❌</span><br></span>
           </span>
           <span><i>Consent Receipt Id: </i></span>
-          <span style="margin-top:1rem;"><el-button type="warning" size="small" plain @click="clearConsentuaUID">New Consentua UID</el-button></span>
+          <span style="margin-top:1rem;">
+            <el-button type="warning" size="small" plain @click="clearConsentuaUID">New Consentua UID</el-button>
+            <el-button type="primary" size="small" plain>Get Consent Receipt</el-button>
+          </span>
         </section>
     </div>
 </template>

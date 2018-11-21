@@ -18,62 +18,63 @@
     </div>
 </template>
 <script>
-    export default {
-        name: 'ConsentStatus',
-        mounted() {
-            var tkf = document.getElementById('tick-front');
-            var tkb = document.getElementById('tick-back');
-            var lock = document.getElementById('lock-path');
-            var hole = document.getElementById('keyhole');
-            var slide = document.getElementById('slide');
-            var ConsentStatus = document.getElementById('ConsentStatus');
+import router from '../router.js'
+export default {
+    name: 'ConsentStatus',
+    mounted() {
+        var tkf = document.getElementById('tick-front');
+        var tkb = document.getElementById('tick-back');
+        var lock = document.getElementById('lock-path');
+        var hole = document.getElementById('keyhole');
+        var slide = document.getElementById('slide');
+        var container = document.getElementById('ConsentStatus');
 
-            function iconOut(e) {
-                hole.classList.add('hidden');
-                tkf.classList.remove('tick-in');
-                tkb.classList.remove('tick-in');
-                tkf.classList.add('tick-out');
-                tkb.classList.add('tick-out');
-                lock.classList.remove('lock-in');
-                lock.classList.add('lock-out');
-            };
+        function iconOut(e) {
+            hole.classList.add('hidden');
+            tkf.classList.remove('tick-in');
+            tkb.classList.remove('tick-in');
+            tkf.classList.add('tick-out');
+            tkb.classList.add('tick-out');
+            lock.classList.remove('lock-in');
+            lock.classList.add('lock-out');
+        };
 
-            function iconIn(e) {
-                hole.classList.remove('hidden');
-                tkf.classList.remove('tick-out');
-                tkb.classList.remove('tick-out');
-                tkf.classList.add('tick-in');
-                tkb.classList.add('tick-in');
-                lock.classList.remove('lock-out');
-                lock.classList.add('lock-in');
-            };
+        function iconIn(e) {
+            hole.classList.remove('hidden');
+            tkf.classList.remove('tick-out');
+            tkb.classList.remove('tick-out');
+            tkf.classList.add('tick-in');
+            tkb.classList.add('tick-in');
+            lock.classList.remove('lock-out');
+            lock.classList.add('lock-in');
+        };
 
-            function slideOut(e) {
-                slide.classList.remove('slide-in');
-                slide.classList.add('slide-out');
-            };
+        function slideOut(e) {
+            slide.classList.remove('slide-in');
+            slide.classList.add('slide-out');
+        };
 
-            function slideIn(e) {
-                slide.classList.add('slide-in');
-                slide.classList.remove('slide-out');
-            };
+        function slideIn(e) {
+            slide.classList.add('slide-in');
+            slide.classList.remove('slide-out');
+        };
 
-            ConsentStatus.addEventListener('mouseenter', function () {
-                iconOut();
-                slideOut();
-            });
+        container.addEventListener('mouseenter', function () {
+            iconOut();
+            slideOut();
+        });
 
-            ConsentStatus.addEventListener('mouseleave', function () {
-                //in
-                iconIn();
-                slideIn();
-            });
+        container.addEventListener('mouseleave', function () {
+            //in
+            iconIn();
+            slideIn();
+        });
 
-            ConsentStatus.addEventListener('click', function () {
-                // window.location.href = '{{ site.url }}/consent-dashboard.html'
-            });
-        }
+        container.addEventListener('click', function () {
+            router.push('/consent-dashboard')
+        });
     }
+}
 </script>
 <style>
     #ConsentStatus {

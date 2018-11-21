@@ -20,7 +20,6 @@
         <router-view />
       </el-main>
       <el-footer>
-        <CookieConsent />
         <ConsentStatus />
         <router-link to="/consent-dashboard">Consent Dashboard</router-link>
       </el-footer>
@@ -37,7 +36,8 @@ export default {
   components: {
     Cart,
     ConsentuaInfo,
-    CookieConsent
+    CookieConsent,
+    ConsentStatus
   },
   mounted() {
    }

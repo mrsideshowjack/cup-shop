@@ -22,23 +22,17 @@ export default new Router({
     {
       path: '/checkout',
       name: 'checkout',
-      // route level code-splitting
-      // this generates a separate chunk (checkout.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "checkout" */ './views/Checkout.vue')
+      component: () => import('./views/Checkout.vue')
     },
     {
       path: '/consent-dashboard',
       name: 'consent-dashboard',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/ConsentDashboard.vue')
+      component: () => import('./views/ConsentDashboard.vue')
     },
     {
       path: '/item/:itemId',
       name: 'item',
-      component: () => import(/* webpackChunkName: "item" */ './views/Item.vue')
+      component: () => import('./views/Item.vue')
     }
   ]
 })
