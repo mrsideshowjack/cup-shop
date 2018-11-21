@@ -22,7 +22,7 @@
 export default {
   data() {
       return {
-        showConsentuaDetail: true,
+        showConsentuaDetail: false,
       }
   },
   methods:{

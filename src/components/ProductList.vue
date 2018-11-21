@@ -85,8 +85,9 @@ export default {
 <style scoped>
 #ProductList{
   display: grid;
-grid: auto / repeat(3, 1fr);
-    grid-gap: 40px 20px;
+  grid: auto / repeat(3, 1fr);
+  grid-gap: 40px 20px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 #ProductList .product-card{
@@ -104,5 +105,11 @@ grid: auto / repeat(3, 1fr);
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 440px) {
+    #ProductList{
+        grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
+    }
 }
 </style>
