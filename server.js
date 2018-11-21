@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 const host = process.env.HOST || 'localhost';
 const doLogging = true;
 
-const db = require('./controllers/DB');
+const db = require('./controllers/db.js');
 
 var app = express();
 //------------------------------------------------------------------------------
