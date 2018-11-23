@@ -1,8 +1,9 @@
 <template>
     <div id="CookieConsent" @click="closeCookieModal()">
         <div id="cookie-consent-container">
+            <h2>Cookie Consent</h2>
             <iframe scrolling="no" id="cookie-consent-iframe" src=""></iframe>
-            <el-button type="text" @click="closeCookieModal()">No Thanks</el-button>
+            <el-button @click="closeCookieModal()">No Thanks</el-button>
         </div>
     </div>
 </template>

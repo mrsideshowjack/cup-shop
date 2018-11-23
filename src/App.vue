@@ -46,6 +46,10 @@ export default {
     ConsentStatus
   },
   mounted() {
+    this.$alert('This ecommerce site is a demonstation test bed for the consent API <a href="https://consnetua.com">Consentua</a>. Click the \'Consentua Info\' toggle to see Consentua working in the background.', 'What is this?',{
+          confirmButtonText: 'OK',
+          dangerouslyUseHTMLString: true
+        });
    }
 }
 </script>
