@@ -4,11 +4,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 // var serveStatic = require('serve-static');
-
 const env = process.env.ENV || 'local';
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
-process.env.VUE_APP_API_URL = 'https://' + host + ':' + port
+// process.env.VUE_APP_API_URL = 'https://' + host + ':' + port
 console.log('running on ' + env, host + ':' + port);
 
 const doLogging = true;
@@ -29,12 +28,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Allow cross-origin HTTP requests
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, application/json");
-    next();
-});
-
+app.use(cors());
 
 
 //------------------------------------------------------------------------------

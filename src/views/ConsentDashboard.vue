@@ -4,6 +4,7 @@
 </div>
 </template>
 <script>
+import ConsentuaUIWrapper from '@/js/consentua-embed.js'
 export default {
     name: 'consent-dashboard',
     methods:{

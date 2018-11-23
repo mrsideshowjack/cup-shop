@@ -26,6 +26,7 @@
       </el-main>
       <el-footer>
         <ConsentStatus />
+        <CookieConsent />
       </el-footer>
     </el-container>
   </div>
@@ -35,6 +36,7 @@ import Cart from '@/components/Cart.vue'
 import ConsentuaInfo from '@/components/ConsentuaInfo.vue'
 import CookieConsent from '@/components/CookieConsent.vue'
 import ConsentStatus from '@/components/ConsentStatus.vue'
+import ConsentuaUIWrapper from '@/js/consentua-embed.js'
 
 export default {
   components: {

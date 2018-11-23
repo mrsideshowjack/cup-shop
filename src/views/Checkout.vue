@@ -55,6 +55,7 @@
 
 <script>
 // @ is an alias to /src
+import ConsentuaUIWrapper from '@/js/consentua-embed.js'
 import CartList from '@/components/CartList.vue'
 
 export default {

@@ -30,6 +30,8 @@ export default {
     }
   },
   mounted () {
+    console.log(process.env.VUE_APP_API_URL + '/all');
+    
     axios
       .get(process.env.VUE_APP_API_URL + '/all')
       .then(response => (this.itemes = response.data))

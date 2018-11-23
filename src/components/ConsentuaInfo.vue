@@ -5,7 +5,7 @@
         <section id="consentua-detail" v-if="showConsentuaDetail">
           <h2>Consentua Info</h2>
           <span><i>consentua UID: </i>{{ consentuaUID }}</span>
-          <span><i>tempaltes: </i>'63','100','98','999999'</span>
+          <span><i>templates: </i>'63','100','98','999999'</span>
           <span><i>template status: <br></i>
             <span v-for="item in consentuaConsents" :key="item.id">{{item.id}}:{{item.consent}} <span v-if="item.consent">✅</span> <span v-if="!item.consent">❌</span><br></span>
           </span>
