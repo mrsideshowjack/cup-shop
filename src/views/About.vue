@@ -2,7 +2,7 @@
   <div class="about">
     <div>
     <h1>About The `Cup Shop`</h1>
-    <p>This ecommerce site is a demonstation test bed for the consent API <a href="https://consnetua.com">Consentua</a>. Please do not fill in an order form and actually expect any paper cups to be sent to you.</p>
+    <p>This ecommerce site is a demonstration test bed for the consent API <a href="https://consnetua.com">Consentua</a>. Please do not fill in an order form and actually expect any paper cups to be sent to you.</p>
     <CookieConsent />
     </div>
     <img src="@/assets/marble_cup.jpg"/>

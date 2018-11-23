@@ -39,8 +39,16 @@
       "eslint:recommended"
     ],
     "rules": {
-      "no-console": 2
+      "no-console": 0
     },
+    "overrides": [
+      {
+        "files": ["src/js/consentua-embed.js"],
+        "rules": {
+          "no-unused-vars": "off"
+        }
+      }
+    ],
     "parserOptions": {
       "parser": "babel-eslint"
     }

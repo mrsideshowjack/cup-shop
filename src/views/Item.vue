@@ -32,7 +32,6 @@
 import axios from 'axios'
 export default {
   name: 'item',
-  props: ['itemId'],
   data () {
     return {
       item: null,
@@ -54,10 +53,10 @@ export default {
       .then(response => (this.item = response.data[0]))
   },
     methods:{
-    cartAdd (itemId) {
+    cartAdd (selectedItemId) {
       this.$store.commit({
         type: 'cartAdd',
-        id: itemId,
+        id: selectedItemId,
         amount: this.quantity
         })
       this.$notify({
@@ -67,11 +66,11 @@ export default {
           onClick: this.navigateCheckout
       });
     },
-    cartRemove (itemId) {
+    cartRemove (selectedItemId) {
     this.$store.commit({
         type: 'cartRemove',
-        id: itemId,
-        amount: quantity
+        id: selectedItemId,
+        amount: this.quantity
         })
     },
     navigateCheckout(){

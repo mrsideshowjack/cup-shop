@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import CartList from '@/components/CartList.vue'
 export default {
   name: 'Cart',

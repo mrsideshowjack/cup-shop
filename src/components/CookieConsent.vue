@@ -18,19 +18,19 @@ export default {
       };
     },
     methods:{
-        openCookieModal(e) {
+        openCookieModal() {
           document.getElementById('CookieConsent').style.visibility = "visible";
           document.getElementById('CookieConsent').style.top = 0;
           document.getElementById('cookie-consent-container').style.animationName = "animatetop";
           document.getElementById('cookie-consent-container').style.top = 0;
         },
-        closeCookieModal(e) {
+        closeCookieModal() {
           document.getElementById('CookieConsent').style.visibility = "hidden";
           document.getElementById('CookieConsent').style.top = "-200vh";
           document.getElementById('cookie-consent-container').style.animationName = "animateout";
           document.getElementById('cookie-consent-container').style.top = "-200vh";
         },
-        isConsented(e) {
+        isConsented() {
           //user consented, do stuff:      
           this.$cookie.set('consented_cookie', 'You_gave_your_consent_for_this_cookie', 1);
           //close popup   
@@ -96,14 +96,6 @@ export default {
         // set cb
         cookie_cwrap.onset = this.cb_set;
         cookie_cwrap.onready = this.cb_ready;
-
-
-         // close modal on modal bg click
-        // window.onclick = function (e) {
-        //   if (e.target == document.getElementById('CookieConsent')) {
-        //     this.closeCookieModal();
-        //   }
-        // }
     }
 }
 </script>

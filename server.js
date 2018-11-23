@@ -62,7 +62,7 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get('/test', function(req, res, next) {
+router.get('/test', function(req, res) {
     console.log(req);
     res.send('ok');
 });
@@ -78,7 +78,7 @@ router.post('/selected', db.getSelectedDB);
 
 
 // Do this after all requests
-router.use(function (req, res, next) {
+router.use(function (req, res) {
     log('Responding to request with status: ' +
         res.statusCode + ' ' + res.statusMessage);
     res.end();

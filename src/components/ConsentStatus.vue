@@ -29,7 +29,7 @@ export default {
         var slide = document.getElementById('slide');
         var container = document.getElementById('ConsentStatus');
 
-        function iconOut(e) {
+        function iconOut() {
             hole.classList.add('hidden');
             tkf.classList.remove('tick-in');
             tkb.classList.remove('tick-in');
@@ -37,9 +37,9 @@ export default {
             tkb.classList.add('tick-out');
             lock.classList.remove('lock-in');
             lock.classList.add('lock-out');
-        };
+        }
 
-        function iconIn(e) {
+        function iconIn() {
             hole.classList.remove('hidden');
             tkf.classList.remove('tick-out');
             tkb.classList.remove('tick-out');
@@ -47,17 +47,17 @@ export default {
             tkb.classList.add('tick-in');
             lock.classList.remove('lock-out');
             lock.classList.add('lock-in');
-        };
+        }
 
-        function slideOut(e) {
+        function slideOut() {
             slide.classList.remove('slide-in');
             slide.classList.add('slide-out');
-        };
+        }
 
-        function slideIn(e) {
+        function slideIn() {
             slide.classList.add('slide-in');
             slide.classList.remove('slide-out');
-        };
+        }
 
         container.addEventListener('mouseenter', function () {
             iconOut();

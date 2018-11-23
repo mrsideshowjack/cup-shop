@@ -85,13 +85,13 @@ export default {
 
   #consentua-detail{
     pointer-events: initial;
-    position: relative;
+    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
-    top: 100px;
-    right: 20px;
+    /* top: 100px;
+    right: 20px; */
     background: rgba(154, 17, 68, 0.6);
     color: #000;
     padding: 2rem;

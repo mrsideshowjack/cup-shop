@@ -36,7 +36,6 @@ import Cart from '@/components/Cart.vue'
 import ConsentuaInfo from '@/components/ConsentuaInfo.vue'
 import CookieConsent from '@/components/CookieConsent.vue'
 import ConsentStatus from '@/components/ConsentStatus.vue'
-import ConsentuaUIWrapper from '@/js/consentua-embed.js'
 
 export default {
   components: {
@@ -46,7 +45,7 @@ export default {
     ConsentStatus
   },
   mounted() {
-    this.$alert('This ecommerce site is a demonstation test bed for the consent API <a href="https://consnetua.com">Consentua</a>. Click the \'Consentua Info\' toggle to see Consentua working in the background.', 'What is this?',{
+    this.$alert('This ecommerce site is a demonstration test bed for the consent API <a href="https://consnetua.com">Consentua</a>. Click the \'Consentua Info\' toggle to see Consentua working in the background.', 'What is this?',{
           confirmButtonText: 'OK',
           dangerouslyUseHTMLString: true
         });
