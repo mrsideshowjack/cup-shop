@@ -38,7 +38,7 @@ export default {
         var cid = '57'; // Customer ID
         var sid = '105'; // Consentua service ID
         var skey = 'fa83fb53-1c0b-4ee0-b4bb-a5efe6fd4360'; // Consentua service key
-        var tids = ['63','100','98','999999']; // Template ID
+        var tids = ['63','100','98']; // Template ID
         for (let i = 0; i < tids.length; i++) {
             let iframe = document.createElement("iframe");
             iframe.id = "consentua-iframe-" + [i];
