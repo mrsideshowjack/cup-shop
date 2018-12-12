@@ -5,13 +5,13 @@
             <el-button @click="clearCart" type="danger">Clear Cart</el-button>
         </div>
         <div id="cart-list">
-        <div v-for="(item, index) in cartDetail.data.data" :key="item.id">
+        <div v-for="(item, index) in cartDetail.data" :key="item.id">
             <div class="cart-item">
             <img :src="item.imgurl" class="item-image">
             <span class="item-name">{{ item.name }}</span>
-            <span class="item-description">{{ fistSentence(item.description) }}</span>
-            <el-input-number class="item-quantity" v-model="quantities[index]" :min="1"></el-input-number>
+            <el-input-number class="item-quantity" @change="inputChange" v-model="quantities[index]" :min="0"></el-input-number>
             <span class="item-price">${{ item.price }}</span>
+            <el-button type="danger" icon="el-icon-delete" @click="removeItem(item.id)" circle></el-button>
             </div>
         </div>
         </div>
@@ -23,25 +23,21 @@ import axios from 'axios'
 export default {
   name: 'CartList',
   methods:{
-      fistSentence: function(para){
-          let sen = para.match(/^(.*?)[.?!]\s/);
-          if (sen) {
-              return sen[0].toString()
-          } else{
-              return para
-          }
-      },
     clearCart(){
         console.log('clearing cart');
         this.$store.commit('clearCartStorage');
         this.cartDetail = JSON.parse({data:[],amount:0});
+    },
+    removeItem(item){
+        this.$store.commit({
+            type: 'cartRemove',
+            id: item,
+            amount: 'all'
+        })
+    },
+    inputChange(e, newVal){
     }
   },
-  data() {
-      return {
-          cartDetail: {data:[],amount:0}
-      };
-    },
   computed: {
     cart () {
         return this.$store.state.cart
@@ -49,21 +45,23 @@ export default {
     cartTotal () {
         return this.$store.getters.cartTotal
     },
+    dbSelected (){
+        return this.$store.getters.dbGetSelected
+    },
     totalPrice (){   
-        return +(Math.round(this.cartDetail.data.amount + "e+2")  + "e-2");
+        return +(Math.round(this.cartDetail.amount + "e+2")  + "e-2");
     },
     quantities() {
         return this.cart.map(function(item) {
                 return item.quantity;
         });
     },
-  },
-    mounted () {
-    let url = process.env.VUE_APP_API_URL + '/selected'
-    axios
-      .post(url, this.cart)
-      .then(response => ( this.cartDetail = response ))
+    cartDetail (){
+                console.log(this.dbSelected(this.cart));
+                
+        return this.dbSelected(this.cart)
     }
+  }
 }
 </script>
 

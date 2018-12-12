@@ -15,11 +15,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 .about p{
   max-width: 700px;
 }
 .about img{
+  min-width: 300px;
   max-width: 50%;
   max-height: 40vh;
   margin: 2rem;

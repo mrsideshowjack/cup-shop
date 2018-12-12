@@ -42,12 +42,8 @@ export default {
             document.getElementById('cookie-consent-container').style.top = "-200vh";
           }, 950);
         },
-        cb_ready(msg){
-            console.log(msg.message);
-            
-            console.log("UID is:" + msg.message.uid);
-            console.log(this.$cookie.get('cup_shop_consents'));            
-            let cooki = this.$cookie.get('cup_shop_consents') || {}
+        cb_ready(msg){      
+            let cooki = JSON.parse(this.$cookie.get('cup_shop_consents')) || {}
             if (!cooki["236"]) {
               this.openCookieModal();
             } else{

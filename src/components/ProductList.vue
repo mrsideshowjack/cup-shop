@@ -1,12 +1,10 @@
 <template>
     <div id="ProductList">
-        <div v-for="item in itemes" :key="item.id">
+        <div v-for="item in db" :key="item.id">
             <el-card :body-style="{ padding: '0px' }" class="product-card">
                 <img :src="item.imgurl" class="image">
                 <div style="padding: 14px;">
-                    <h3>{{ item.name }} <el-tag>${{ item.price }}</el-tag>
-                    </h3>
-
+                    <h3>{{ item.name }} <el-tag>${{ item.price }}</el-tag></h3>
                     <p>{{ fistSentence(item.description) }}</p>
                     <div class="btn-contain bottom clearfix">
                         <router-link :to="{ name: 'item', params: { itemId: item.id }}">
@@ -25,18 +23,6 @@
     import axios from 'axios'
     export default {
         name: 'ProductList',
-        data() {
-            return {
-                itemes: null,
-            }
-        },
-        mounted() {
-            console.log(process.env.VUE_APP_API_URL + '/all');
-
-            axios
-                .get(process.env.VUE_APP_API_URL + '/all')
-                .then(response => (this.itemes = response.data))
-        },
         methods: {
             fistSentence: function (para) {
                 let sen = para.match(/^(.*?)[.?!]\s/);
@@ -73,6 +59,9 @@
         computed: {
             cart() {
                 return this.$store.state.cart
+            },
+            db() {
+                return this.$store.state.db
             },
             cartTotal() {
                 return this.$store.getters.cartTotal

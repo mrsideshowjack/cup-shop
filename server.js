@@ -3,16 +3,12 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-// var serveStatic = require('serve-static');
 const env = process.env.ENV || 'local';
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
-// process.env.VUE_APP_API_URL = 'https://' + host + ':' + port
 console.log('running on ' + env, host + ':' + port);
 
 const doLogging = true;
-
-const db = require('./controllers/db.js');
 
 var app = express();
 
@@ -66,15 +62,6 @@ router.get('/test', function(req, res) {
     console.log(req);
     res.send('ok');
 });
-
-//get all db
-router.get('/all', db.getAllDB);
-
-//get single db
-router.get('/single/:id', db.getSingleDB);
-
-//get selected db
-router.post('/selected', db.getSelectedDB);
 
 
 // Do this after all requests

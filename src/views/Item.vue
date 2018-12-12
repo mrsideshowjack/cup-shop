@@ -109,7 +109,8 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: 50vw;
+  max-width: 44vw;
+  padding: 2rem;
  }
 
 .grid-area-title { 

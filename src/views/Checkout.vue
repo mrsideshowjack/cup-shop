@@ -42,7 +42,7 @@
         <el-time-picker type="fixed-time" placeholder="Pick a time" v-model="form.date2" style="width: 100%;"></el-time-picker>
         </el-col>
     </el-form-item>
-    <el-form-item>
+    <el-form-item :span="11" id="checkout-consent-contain">
         <!-- Consentua -->
         <div id="checkout-consentua"></div>
     </el-form-item>
@@ -154,5 +154,9 @@ export default {
 }
 #Checkout #checkout-consentua iframe{
     border:none;
+}
+
+#Checkout #checkout-consent-contain .el-form-item__content{
+    margin: 0px !important;
 }
 </style>
