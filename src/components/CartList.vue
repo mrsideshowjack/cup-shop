@@ -35,6 +35,8 @@ export default {
         })
     },
     inputChange(e, newVal){
+        console.log(newVal);
+        
     }
   },
   computed: {
