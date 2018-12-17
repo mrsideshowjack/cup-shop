@@ -73,6 +73,7 @@ export default {
     top: 0;right: 0;bottom: 0;left: 0;
     pointer-events: none;
     user-select: none;
+    z-index: 999999;
   }
 
   .wrapper {

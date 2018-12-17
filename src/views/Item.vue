@@ -29,28 +29,23 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'item',
   data () {
     return {
-      item: null,
       quantity: 1
     }
   },
   computed: {
+    item(){
+      return this.$store.getters.dbSingle(this.itemId)
+    },
     itemId() {
       return this.$route.params.itemId
     },
     randRating(){
       return (Math.random() * (5.00 - 1.00 + 1.00) + 1.00).toFixed(1)
     }
-  },
-  mounted () {
-    let url = process.env.VUE_APP_API_URL + '/single/' + this.itemId
-    axios
-      .get(url)
-      .then(response => (this.item = response.data[0]))
   },
     methods:{
     cartAdd (selectedItemId) {
