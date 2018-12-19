@@ -81,7 +81,10 @@ export default {
     },
     methods: {
       onSubmit() {
-        alert('You bought nothing!')
+        this.$alert('Thanks for your \'order\', please check out <a href="https://consnetua.com">Consentua.com</a>', 'Thanks',{
+          confirmButtonText: 'OK',
+          dangerouslyUseHTMLString: true
+        });
         console.log(this.form);
       },
         cb_ready(msg){
