@@ -81,7 +81,7 @@ export default {
     },
     methods: {
       onSubmit() {
-        this.$alert('Thanks for your \'order\', please check out <a href="https://consnetua.com">Consentua.com</a>', 'Thanks',{
+        this.$alert('Thanks for your \'order\', please check out <a href="https://consentua.com">Consentua.com</a>', 'Thanks',{
           confirmButtonText: 'OK',
           dangerouslyUseHTMLString: true
         });

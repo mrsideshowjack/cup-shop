@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const env = process.env.ENV || 'local';
+const env = process.env.NODE_ENV || process.env.ENV || 'local';
 const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || 3000;
 console.log('running on ' + env, host + ':' + port);
@@ -57,12 +57,6 @@ router.use(function (req, res, next) {
     if (hasBody) log(req.body);
     next();
 });
-
-router.get('/test', function(req, res) {
-    console.log(req);
-    res.send('ok');
-});
-
 
 // Do this after all requests
 router.use(function (req, res) {

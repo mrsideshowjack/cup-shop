@@ -49,7 +49,7 @@ export default {
     ConsentStatus
   },
   mounted() {
-    this.$alert('This ecommerce site is a demonstration test bed for the consent API <a href="https://consnetua.com">Consentua</a>. <br> Purchase some cups. Go to checkout and become an identified and consented to user. <br> Tap the \'Consentua Info\' toggle to see Consentua working in the background. <a href="https://consentua.com/contact">Contact Us</a>', 'What is this?',{
+    this.$alert('This ecommerce site is a demonstration test bed for the consent API <a href="https://consentua.com">Consentua</a>. <br> Purchase some cups. Go to checkout and become an identified and consented to user. <br> Tap the \'Consentua Info\' toggle to see Consentua working in the background. <a href="https://consentua.com/contact">Contact Us</a>', 'What is this?',{
           confirmButtonText: 'OK',
           dangerouslyUseHTMLString: true
         });
