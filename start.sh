@@ -7,22 +7,20 @@ sudo apt-get -y update;
 #install git
 sudo apt-get install -y git;
 
-# Install Node and npm
+# Install Node and npm nginx
 sudo apt-get install -y nodejs;
+sudo apt-get install -y npm;
 sudo apt-get install -y build-essential;
 sudo ln -s /usr/bin/nodejs /usr/bin/node;
+sudo apt-get -y install nginx;
 
 # set env to prod
-env NODE_ENV=production;
+sudo env NODE_ENV=production;
 
 # install npm
 echo "installing npm dependencies";
-npm install;
+sudo npm install;
 
 # build dist
 echo "building dist";
-npm run build;
-
-# run prod server
-echo "starting server";
-node server.js;
+sudo npm run build;
