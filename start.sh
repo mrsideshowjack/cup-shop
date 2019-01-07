@@ -12,7 +12,6 @@ sudo apt-get install -y nodejs;
 sudo apt-get install -y npm;
 sudo apt-get install -y build-essential;
 sudo ln -s /usr/bin/nodejs /usr/bin/node;
-sudo apt-get -y install nginx;
 
 # set env to prod
 sudo env NODE_ENV=production;
