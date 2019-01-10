@@ -83,9 +83,9 @@ export default {
     },
     mounted() {
         // Consentua
-        let cid = '57', // Customer ID
+        let cid = '266', // Customer ID
             sid = '105', // Consentua service ID
-            skey = 'fa83fb53-1c0b-4ee0-b4bb-a5efe6fd4360', // Consentua service key
+            skey = 'ad2e97aa-2fbe-4993-92fe-598fc26a33ba', // Consentua service key
             tid = '63'; // Template ID
         var iframe = document.querySelector('#cookie-consent-iframe');
         var cookie_cwrap = new ConsentuaUIWrapper(iframe, cid, this.$store.state.consentuaUID, tid, sid, skey, this.cb_msg, 'en',{ix:"https://kni-test-node.herokuapp.com/custom-interaction.html"});

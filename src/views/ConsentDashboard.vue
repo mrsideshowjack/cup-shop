@@ -35,9 +35,9 @@ export default {
     },
     mounted() {
         // Consentua
-        var cid = '57'; // Customer ID
+        var cid = '266'; // Customer ID
         var sid = '105'; // Consentua service ID
-        var skey = 'fa83fb53-1c0b-4ee0-b4bb-a5efe6fd4360'; // Consentua service key
+        var skey = 'ad2e97aa-2fbe-4993-92fe-598fc26a33ba'; // Consentua service key
         var tids = ['63','100','98']; // Template ID
         for (let i = 0; i < tids.length; i++) {
             let iframe = document.createElement("iframe");
