@@ -43,7 +43,9 @@
     },
     "overrides": [
       {
-        "files": ["src/js/consentua-embed.js"],
+        "files": [
+          "src/js/consentua-embed.js"
+        ],
         "rules": {
           "no-unused-vars": "off"
         }
