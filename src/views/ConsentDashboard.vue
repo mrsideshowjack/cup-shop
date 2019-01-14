@@ -1,6 +1,7 @@
 <template>
 <div class="consent-dashboard" id="consent-dashboard">
-    <h2>consent dashboard</h2>
+    <h2>Consent Dashboard</h2>
+    <p>A view of all the consents you have / have not given to our service.</p>
 </div>
 </template>
 <script>

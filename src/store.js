@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import X from './assets/db'
+import DemoDb from './assets/db'
 
 Vue.use(Vuex)
 
@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
     cart: [],
     consentuaUID: false,
     consentuaConsents: [],
-    db: X
+    db: DemoDb
   },
   mutations: {
     cartAdd (state, payload) {
