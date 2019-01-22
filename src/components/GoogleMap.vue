@@ -22,7 +22,7 @@ export default {
 
     computed: {
         locationConsent() {
-            if (this.consentuaConsents) {
+            if (this.consentuaConsents[0]) {
                 let locPurp = this.consentuaConsents.find(this.findLocationPurpose)
                 return locPurp.consent
             } else {
@@ -37,7 +37,11 @@ export default {
     mounted() {
         this.geolocate();
     },
-
+    watch: {
+        locationConsent: function () {
+            this.geolocate();
+        }
+    },
     methods: {
         addMarker(newMarker) {
             if (newMarker) {
@@ -64,7 +68,7 @@ export default {
                     this.addMarker(this.center)
                 });
             } else {
-                this.$message.error('No Consent for Location');
+                // this.$message.error('No Consent for Location');
             }
 
         },
