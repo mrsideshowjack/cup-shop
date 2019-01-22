@@ -5,6 +5,7 @@
     <p>This ecommerce site is a demonstration test bed for the consent API <a href="https://consnetua.com">Consentua</a>. Purchase some cups. Go to checkout and become an identified and consented to user. Please do not fill in an order form and actually expect any paper cups to be sent to you.</p>
     <br>
     <a href="https://consentua.com/contact">Contact Us</a>
+    <google-map id="about-google-map" />
     <CookieConsent />
     </div>
     <img src="@/assets/marble_cup.jpg"/>
@@ -27,11 +28,16 @@
   margin: 2rem;
   box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.2);
 }
+.about #about-google-map{
+  margin-top: 1rem;
+}
 </style>
 <script>
+import GoogleMap from "@/components/GoogleMap";
 export default {
   name: 'About',
-  components:{
+  components: {
+    GoogleMap
   }
 }
 </script>

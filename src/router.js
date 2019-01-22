@@ -30,6 +30,11 @@ export default new Router({
       component: () => import('./views/ConsentDashboard.vue')
     },
     {
+      path: '/consentua-test',
+      name: 'consentua-test',
+      component: () => import('./views/ConsentuaTest.vue')
+    },
+    {
       path: '/item/:itemId',
       name: 'item',
       component: () => import('./views/Item.vue')
