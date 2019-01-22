@@ -1,6 +1,6 @@
 <template>
-    <div id="ConsentStatus">
-        <svg width="30" height="35" viewBox="0 0 479 643" fill="none" xmlns="http://www.w3.org/2000/svg">
+<div id="ConsentStatus">
+    <svg width="30" height="35" viewBox="0 0 479 643" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="path-1-inside-1" fill="white">
                 <rect y="279" width="400" height="364" rx="21" />
             </mask>
@@ -14,9 +14,10 @@
             <path id="tick-front" class="tick-in" d="M100 481L182.429 563.429C186.334 567.334 192.666 567.334 196.571 563.429L460 300"
                   stroke="white" stroke-width="45" stroke-linejoin="round" />
         </svg>
-        <div id="slide">Consent Dashboard</div>
-    </div>
+    <div id="slide">Consent Dashboard</div>
+</div>
 </template>
+
 <script>
 import router from '../router.js'
 export default {
@@ -76,76 +77,76 @@ export default {
     }
 }
 </script>
+
 <style>
-    #ConsentStatus {
-        background: #9A1144;
-        position: fixed;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        bottom: 0;
-        left: 0;
-        padding: 0.6rem;
-        border-radius: 0px 1rem 0px 0px;
-        color: #fff;
-        cursor: pointer;
-    }
+#ConsentStatus {
+    background: #9A1144;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    bottom: 0;
+    left: 0;
+    padding: 0.6rem;
+    border-radius: 0px 1rem 0px 0px;
+    color: #fff;
+    cursor: pointer;
+}
 
-    #tick-back {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
-        transition: all 0.2s cubic-bezier(0.18, 0.82, 0.68, 1);
-    }
+#tick-back {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: all 0.2s cubic-bezier(0.18, 0.82, 0.68, 1);
+}
 
-    #tick-front {
-        stroke-dasharray: 1000;
-        stroke-dashoffset: 1000;
-        transition: all 0.2s cubic-bezier(0.18, 0.82, 0.68, 1);
-    }
+#tick-front {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: all 0.2s cubic-bezier(0.18, 0.82, 0.68, 1);
+}
 
-    #lock-path {
-        stroke-dasharray: 1000;
-        transition: all 0.2s cubic-bezier(0.18, 0.82, 0.68, 1);
-    }
+#lock-path {
+    stroke-dasharray: 1000;
+    transition: all 0.2s cubic-bezier(0.18, 0.82, 0.68, 1);
+}
 
-    #keyhole {
-        transition: all 0.2s cubic-bezier(0, 1.23, 0.67, 1);
-        transition-delay: 0.1s;
-    }
+#keyhole {
+    transition: all 0.2s cubic-bezier(0, 1.23, 0.67, 1);
+    transition-delay: 0.1s;
+}
 
-    #slide {
-        transition: all 0.2s cubic-bezier(0, 1.23, 0.67, 1);
-        transition-delay: 0.4s;
-        width: 0px;
-        overflow: hidden;
-        margin-left: 10px;
-    }
+#slide {
+    transition: all 0.2s cubic-bezier(0, 1.23, 0.67, 1);
+    transition-delay: 0.4s;
+    width: 0px;
+    overflow: hidden;
+    margin-left: 10px;
+}
 
-    .tick-out {
-        stroke-dashoffset: 0 !important;
-        transition-delay: 0.2s !important;
-    }
+.tick-out {
+    stroke-dashoffset: 0 !important;
+    transition-delay: 0.2s !important;
+}
 
-    .tick-in {
-        stroke-dashoffset: 1000 !important;
-        transition-delay: 0s !important;
-    }
+.tick-in {
+    stroke-dashoffset: 1000 !important;
+    transition-delay: 0s !important;
+}
 
+.lock-out {
+    stroke-dashoffset: 0;
+}
 
-    .lock-out {
-        stroke-dashoffset: 0;
-    }
+.lock-in {
+    stroke-dashoffset: -143;
+}
 
-    .lock-in {
-        stroke-dashoffset: -143;
-    }
+.hidden {
+    opacity: 0.0;
+}
 
-    .hidden {
-        opacity: 0.0;
-    }
-
-    .slide-out {
-        width: 150px !important;
-    }
+.slide-out {
+    width: 150px !important;
+}
 </style>

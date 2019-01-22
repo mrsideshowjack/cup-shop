@@ -15,7 +15,7 @@
                     <span v-for="item in consentuaConsents" :key="item.id">
                       {{item.id}}:{{item.consent}}
                       <span v-if="item.consent">✅</span>
-                      <span v-if="!item.consent">❌</span><br>
+                    <span v-if="!item.consent">❌</span><br>
                     </span>
                     </span>
                     <!-- <span><i>Consent Receipt Id: </i></span> -->

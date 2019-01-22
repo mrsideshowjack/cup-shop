@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+<div class="home">
     <ProductList />
-  </div>
+</div>
 </template>
 
 <script>
@@ -9,9 +9,9 @@
 import ProductList from '@/components/ProductList.vue'
 
 export default {
-  name: 'home',
-  components: {
-    ProductList
-  }
+    name: 'home',
+    components: {
+        ProductList
+    }
 }
 </script>
