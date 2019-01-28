@@ -16,7 +16,7 @@ Vue.use(ElementUI)
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyCWudya1uU_v58HAFtGLM1A1898oCzbQoI"
+    key: process.env.VUE_APP_GMAP_API_KEY
   }
 });
 
