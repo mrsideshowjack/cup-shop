@@ -15,7 +15,7 @@
                         <router-link to="/about">About</router-link>
                     </el-menu-item>
                     <el-menu-item index="3">
-                        <a href="https://github.com/mrsideshowjack/cup-shop">Github</a>
+                        <a href="https://github.com/consentua/cup-shop">Github</a>
                     </el-menu-item>
                 </el-menu>
                 <a id="ctaLink" href="https://consentua.com" alt="find out more about Consentua"><i class="el-icon-back"></i>Consentua.com</a>
