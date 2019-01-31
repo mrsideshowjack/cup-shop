@@ -19,16 +19,20 @@ export default {
     },
     methods: {
         openCookieModal() {
-            document.getElementById('CookieConsent').style.visibility = "visible";
-            document.getElementById('CookieConsent').style.top = 0;
-            document.getElementById('cookie-consent-container').style.animationName = "animatetop";
-            document.getElementById('cookie-consent-container').style.top = 0;
+            let CookieConsent = document.getElementById('CookieConsent');
+            let CookieConsentContainer = document.getElementById('cookie-consent-container');
+            CookieConsent.style.visibility = "visible";
+            CookieConsent.style.top = 0;
+            CookieConsentContainer.style.animationName = "animatetop";
+            CookieConsentContainer.style.top = 0;
         },
         closeCookieModal() {
-            document.getElementById('CookieConsent').style.visibility = "hidden";
-            document.getElementById('CookieConsent').style.top = "-200vh";
-            document.getElementById('cookie-consent-container').style.animationName = "animateout";
-            document.getElementById('cookie-consent-container').style.top = "-200vh";
+            let CookieConsent = document.getElementById('CookieConsent');
+            let CookieConsentContainer = document.getElementById('cookie-consent-container');
+            CookieConsent.style.visibility = "hidden";
+            CookieConsent.style.top = "-200vh";
+            CookieConsentContainer.style.animationName = "animateout";
+            CookieConsentContainer.style.top = "-200vh";
         },
         isConsented() {
             //user consented, do stuff:      
@@ -36,10 +40,12 @@ export default {
             //close popup   
             window.setTimeout(function () {
                 //wait 950ms before modal close, for animations to finish
-                document.getElementById('CookieConsent').style.visibility = "hidden";
-                document.getElementById('CookieConsent').style.top = "-200vh";
-                document.getElementById('cookie-consent-container').style.animationName = "animateout";
-                document.getElementById('cookie-consent-container').style.top = "-200vh";
+                let CookieConsent = document.getElementById('CookieConsent');
+                let CookieConsentContainer = document.getElementById('cookie-consent-container');
+                CookieConsent.style.visibility = "hidden";
+                CookieConsent.style.top = "-200vh";
+                CookieConsentContainer.style.animationName = "animateout";
+                CookieConsentContainer.style.top = "-200vh";
             }, 950);
         },
         cb_ready(msg) {

@@ -11,8 +11,7 @@ export const store = new Vuex.Store({
     ServiceId: 105,
     consentuaUID: false,
     consentuaConsents: [],
-    db: DemoDb,
-    var1: {}
+    db: DemoDb
   },
   mutations: {
     cartAdd(state, payload) {

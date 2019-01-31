@@ -3,9 +3,9 @@ import './styles/index.css'
 import ElementUI from 'element-ui'
 import App from './App.vue'
 import router from './router'
-import * as VueGoogleMaps from "vue2-google-maps";
 import { store } from './store'
 import './registerServiceWorker'
+import * as VueGoogleMaps from "vue2-google-maps";
 import * as VueCookie from "vue-cookie";
 
 Vue.use(VueCookie);
