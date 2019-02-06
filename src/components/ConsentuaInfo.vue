@@ -3,11 +3,7 @@
     <div id="consentua-toggle"><span>Consentua Info </span>
         <el-switch v-model="showConsentuaDetail"></el-switch>
     </div>
-    <!-- Yes I know, but it needs 2 wrappers -->
-    <div class="wrapperwrapper" v-if="showConsentuaDetail">
-        <div class="wrapper">
-            <drag-it-dude>
-                <section id="consentua-detail">
+        <section id="consentua-detail" v-if="showConsentuaDetail">
                     <h2>Consentua Info</h2>
                     <span><i>Consentua UID: </i>{{ consentuaUID }}</span>
                     <span><i>Templates: </i>'63','100','98'</span>
@@ -27,10 +23,7 @@
             </router-link>
             <!-- <el-button type="primary" size="small" plain>Get Consent Receipt</el-button> -->
           </span>
-                </section>
-            </drag-it-dude>
-        </div>
-    </div>
+    </section>
 </div>
 </template>
 
@@ -42,7 +35,7 @@ export default {
     },
     data() {
         return {
-            showConsentuaDetail: false,
+            showConsentuaDetail: true,
         }
     },
     methods: {
@@ -76,38 +69,20 @@ export default {
     margin: 0.5rem;
 }
 
-.wrapperwrapper {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    pointer-events: none;
-    user-select: none;
-    z-index: 999999;
-}
-
-.wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    pointer-events: none;
-    user-select: none;
-}
-
 #consentua-detail {
     pointer-events: initial;
     position: fixed;
+    right: 0;
+    margin-top: 25vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-evenly;
-    background: rgba(154, 17, 68, 0.8);
-    color: #000;
+    background-color: #F5F5F5;
+    border: 3px solid #A32655;
+    border-right: none;
     padding: 2rem;
-    border-radius: 20px;
+    border-radius: 1rem 0px 0px 1rem;
     z-index: 5;
-    cursor: move;
     user-select: none;
 }
 
