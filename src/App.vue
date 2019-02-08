@@ -12,9 +12,12 @@
                         <router-link to="/">Home</router-link>
                     </el-menu-item>
                     <el-menu-item index="2">
-                        <router-link to="/about">About</router-link>
+                        <router-link to="/cups">Cups</router-link>
                     </el-menu-item>
                     <el-menu-item index="3">
+                        <router-link to="/about">About</router-link>
+                    </el-menu-item>
+                    <el-menu-item index="4">
                         <a href="https://github.com/consentua/cup-shop">Github</a>
                     </el-menu-item>
                 </el-menu>
@@ -48,17 +51,6 @@ export default {
         ConsentuaInfo,
         CookieConsent,
         ConsentStatus
-    },
-    mounted() {
-        if (localStorage.getItem('firstVisit') == null) {
-            this.$alert(
-                'This ecommerce site is a demonstration test bed for the consent API <a href="https://consentua.com">Consentua</a>. <br> Purchase some cups. Go to checkout and become an identified and consented to user. <br> Tap the \'Consentua Info\' toggle to see Consentua working in the background. <a href="https://consentua.com/contact">Contact Us</a>',
-                'What is this?', {
-                    confirmButtonText: 'OK',
-                    dangerouslyUseHTMLString: true
-                });
-            localStorage.setItem('firstVisit', false);
-        }
     }
 }
 </script>
@@ -174,6 +166,10 @@ body {
     outline: 0;
     color: #303133;
     border-bottom: 2px solid #35998F;
+}
+
+.el-main{
+    padding: 0px;
 }
 
 .el-message-box {
