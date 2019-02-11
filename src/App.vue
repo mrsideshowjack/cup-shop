@@ -77,16 +77,6 @@ body {
     }
 }
 
-@keyframes slidecontain {
-    0% {
-        margin-left: -17px;
-    }
-
-    100% {
-        margin-left: 0px;
-    }
-}
-
 .el-header {
     display: flex;
     justify-content: space-between;
@@ -121,8 +111,8 @@ body {
     display: flex;
     color: #fff;
     padding: 0.8rem;
-    /* border-radius: 0.3rem; */
-    margin-left: -17px;
+    border-radius: 0.3rem;
+    /* margin-left: -17px; */
     overflow: hidden;
 }
 
@@ -132,10 +122,6 @@ body {
     right: 38px;
     text-decoration: none;
     display: block;
-}
-
-.el-header #ctaLink:hover {
-    animation: slidecontain 0.5s ease 0s forwards;
 }
 
 .el-header #ctaLink:hover .el-icon-back {

@@ -1,7 +1,7 @@
 <template>
 <div class="home">
     <section class="hero">
-    <h1>Cup Shop</h1>
+    <h1>Cup Shop 🥤</h1>
     <img src="@/assets/cup-shop-logo-512x512.png"> 
     </section>
     <section class="explain">
@@ -20,12 +20,17 @@
         <p>Made up from a very flexible API & Widget that installs seamlessly into your own apps & enterprise systems. </p>
     </article>
     </section>
+    <section><Newsletter /></section>
 </div>
 </template>
 
 <script>
+import Newsletter from '@/components/Newsletter.vue'
 export default {
     name: 'home',
+    components: {
+        Newsletter
+    }
 }
 </script>
 
