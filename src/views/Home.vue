@@ -11,6 +11,8 @@
         <p>Purchase some cups. Go to checkout and become an identified and consented to user.</p>
         <p>Tap the 'Consentua Info' toggle to see Consentua working in the background. <a href="https://consentua.com/contact">Contact Us</a></p>
     </article>
+    <img src="@/assets/cups.png">
+    <img src="@/assets/consentua-logo-colour.svg">
     <article>
         <h2>What is Consentua?</h2>
         <p><a href="https://consentua.com">Consentua™</a> helps build trust. Giving users choice and control over their personal data.</p>
@@ -32,6 +34,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
     background: linear-gradient(#e59191, white);
     min-height: 80vh;
@@ -45,19 +48,34 @@ export default {
     max-height: 400px;
 }
 .explain{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: ". ." ". .";
     align-items: center;
     min-height: 50vh;
+    padding: 1rem;
+}
+.explain > img{
+    max-width: 80%;
+    margin: 0px auto;
 }
 .explain > article{
     padding: 3rem 2rem;
-    min-width: 44vw;
 }
 .explain > article:nth-child(2){
     background: #e2e2e2;
+}
+@media screen and (max-width: 1200px) {
+    .explain{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .explain > img{
+        max-width: 400px;
+        margin: 1rem auto;
+    }
 }
 </style>
 
