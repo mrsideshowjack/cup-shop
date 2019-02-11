@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import DemoDb from './assets/db'
 import axios from 'axios';
+import * as VueCookie from "vue-cookie";
+
+Vue.use(VueCookie);
 
 Vue.use(Vuex)
 export const store = new Vuex.Store({
@@ -102,6 +105,12 @@ export const store = new Vuex.Store({
         id: Object.keys(payload.value)[0],
         consent: payload.value[Object.keys(payload.value)[0]]
       }
+
+      // check if need to remove cookie
+      if (x.id == '236' && !x.consent) {
+        document.cookie = "consented_cookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      }
+
       if (state.consentuaConsents.length == 0) {
         state.consentuaConsents.push(x)
       } else {

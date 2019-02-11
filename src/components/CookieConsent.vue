@@ -1,9 +1,13 @@
 <template>
-<div id="CookieConsent" @click="closeCookieModal()">
-    <div id="cookie-consent-container">
-        <h2>Cookie Consent</h2>
-        <iframe scrolling="no" id="cookie-consent-iframe" src=""></iframe>
-        <el-button @click="closeCookieModal()">No Thanks</el-button>
+<div>
+    <div>
+        <el-button size="small" plain @click="openCookieModal">Open cookie popup</el-button>
+    </div>
+    <div id="CookieConsent" @click="closeCookieModal()">
+        <div id="cookie-consent-container">
+            <iframe scrolling="no" id="cookie-consent-iframe" src=""></iframe>
+            <el-button @click="closeCookieModal()">Close</el-button>
+        </div>
     </div>
 </div>
 </template>
@@ -36,6 +40,10 @@ export default {
         },
         isConsented() {
             //user consented, do stuff:      
+            this.$message({
+                message: 'Consent given, creating cookie!',
+                type: 'success'
+            });
             this.$cookie.set('consented_cookie', 'You_gave_your_consent_for_this_cookie', 1);
             //close popup   
             window.setTimeout(function () {
@@ -48,12 +56,30 @@ export default {
                 CookieConsentContainer.style.top = "-200vh";
             }, 950);
         },
+        notConsented() {
+            //user not consented, do stuff:      
+            this.$message({
+                message: 'Consent not given, deleting cookie!',
+                type: 'warning'
+            });
+            // cookie will be deleted in the store
+        },
         cb_ready(msg) {
-            let cooki = JSON.parse(this.$cookie.get('cup_shop_consents')) || {}
-            if (!cooki["236"]) {
+            // when ready (onload)
+
+            // get stored consents
+            let cookiConsent = this.$store.state.consentuaConsents.find(function (consent) {
+                return consent.id == '236';
+            });
+
+            if (!cookiConsent) {
+                // no consents
                 this.openCookieModal();
-            } else {
+            } else if (cookiConsent.consent) {
+                // is consneted
                 this.isConsented();
+            } else {
+                this.openCookieModal();
             }
             //store uid for demo
             if (!this.$store.state.consentuaUID) {
@@ -64,13 +90,13 @@ export default {
             }
         },
         cb_set(msg) {
-            //update cookie when consent is set
-            console.log("Consent received from Consentua", msg);
-            let c = msg.message.consents || {};
-            this.$cookie.set('cup_shop_consents', JSON.stringify(c), 1);
-            this.$cookie.set('cup_shop_cuid', msg.message.uid, 1);
-            if (c["236"]) {
+            //update when consent is cahnged
+            if (msg.message.consents['236']) {
+                // consent is true
                 this.isConsented();
+            } else if (!msg.message.consents['236']) {
+                // consent is false
+                this.notConsented();
             }
             //store consents for demo
             this.$store.commit({
@@ -82,11 +108,6 @@ export default {
             console.warn("Consent received from Consentua", msg);
         }
     },
-    beforeCreate() {
-        // var websdkScript = document.createElement('script');
-        // websdkScript.setAttribute('src', 'https://websdk.consentua.com/websdk/consentua-embed.js.php');
-        // document.body.appendChild(websdkScript);
-    },
     mounted() {
         // Consentua
         let cid = '266', // Customer ID
@@ -95,7 +116,7 @@ export default {
             tid = '63'; // Template ID
         var iframe = document.querySelector('#cookie-consent-iframe');
         var cookie_cwrap = new ConsentuaUIWrapper(iframe, cid, this.$store.state.consentuaUID, tid, sid, skey, this.cb_msg, 'en', {
-            ix: "https://kni-test-node.herokuapp.com/custom-interaction.html"
+            ix: "https://kni-test-node.herokuapp.com/cup-cookie-consent.html"
         });
         // set cb
         cookie_cwrap.onset = this.cb_set;
@@ -105,11 +126,6 @@ export default {
 </script>
 
 <style>
-/* iframe#cookie-consent-iframe{
-    border: none;
-    width: 100%;
-} */
-
 @-webkit-keyframes animatetop {
     0% {
         top: -300px;
@@ -184,7 +200,6 @@ export default {
 }
 
 #CookieConsent {
-    /* display: none; */
     visibility: hidden;
     position: fixed;
     z-index: 1;
@@ -194,9 +209,7 @@ export default {
     height: 100%;
     overflow: auto;
     background-color: rgba(55, 55, 55, 0.61);
-    -webkit-animation-name: animatefade;
     animation-name: animatefade;
-    -webkit-animation-duration: 0.4s;
     animation-duration: 0.4s;
 }
 
@@ -207,28 +220,13 @@ export default {
     right: 0;
     top: -200vh;
     padding: 1rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-box-align: stretch;
-    -ms-flex-align: stretch;
     align-items: stretch;
     background-color: #fff;
     border-radius: 1.3rem;
-    /* -webkit-box-shadow: inset 0 0 9px black;
-                box-shadow: inset 0 0 9px black; */
     text-align: center;
-    /* -webkit-animation-name: animatetop; */
-    /* animation-name: animatetop; */
-    -webkit-animation-duration: 0.6s;
     animation-duration: 0.6s;
 }
 

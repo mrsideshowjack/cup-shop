@@ -4,34 +4,38 @@
         <el-switch v-model="showConsentuaDetail"></el-switch>
     </div>
         <section id="consentua-detail" v-if="showConsentuaDetail">
-                    <h2>Consentua Info</h2>
-                    <span><i>Consentua UID: </i>{{ consentuaUID }}</span>
-                    <span><i>Templates: </i>'63','100','98'</span>
-                    <span><i>Consents: <br></i>
-                    <span v-for="item in consentuaConsents" :key="item.id">
-                      {{item.id}}:{{item.consent}}
-                      <span v-if="item.consent">✅</span>
-                    <span v-if="!item.consent">❌</span><br>
-                    </span>
-                    </span>
-                    <!-- <span><i>Consent Receipt Id: </i></span> -->
-                    <span style="margin-top:1rem;">
-            <el-button type="warning" size="small" plain @click="clearConsentuaUID">New Consentua UID</el-button>
-            <router-link to="/consentua-test">
-            <br>
-            <el-button size="small" plain>Consetua API test page</el-button>
-            </router-link>
-            <!-- <el-button type="primary" size="small" plain>Get Consent Receipt</el-button> -->
-          </span>
+            <h2>Consentua Info</h2>
+            <span><i>Consentua UID: </i>{{ consentuaUID }}</span>
+            <span><i>Templates: </i>'63','100','98'</span>
+            <span><i>Consents: <br></i>
+            <span v-for="item in consentuaConsents" :key="item.id">
+                {{item.id}}:{{item.consent}}
+                <span v-if="item.consent">✅</span>
+            <span v-if="!item.consent">❌</span><br>
+            </span>
+            </span>
+            <!-- <span><i>Consent Receipt Id: </i></span> -->
+            <div id="btn-group">
+                <el-button type="warning" size="small" plain @click="clearConsentuaUID">New Consentua UID</el-button>
+                <router-link to="/consentua-test">
+                <br>
+                <el-button size="small" plain>Consetua API test page</el-button>
+                </router-link>
+                <br>
+                <CookieConsent />
+                <!-- <el-button type="primary" size="small" plain>Get Consent Receipt</el-button> -->
+            </div>
     </section>
 </div>
 </template>
 
 <script>
-import DragItDude from 'vue-drag-it-dude/src/DragItDude.vue';
+import DragItDude from 'vue-drag-it-dude/src/DragItDude.vue'
+import CookieConsent from './CookieConsent.vue'
 export default {
     components: {
-        DragItDude
+        DragItDude,
+        CookieConsent
     },
     data() {
         return {
@@ -90,5 +94,18 @@ export default {
     text-align: center;
     align-self: center;
     margin: 0px 0px 1rem 0px;
+}
+#btn-group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+#btn-group > * {
+    display: flex;
+    max-height: 40px;
+    margin: 0.2rem;
 }
 </style>

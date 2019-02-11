@@ -33,7 +33,6 @@
         </el-main>
         <el-footer>
             <ConsentStatus />
-            <CookieConsent />
         </el-footer>
     </el-container>
 </div>
@@ -42,14 +41,12 @@
 <script>
 import Cart from '@/components/Cart.vue'
 import ConsentuaInfo from '@/components/ConsentuaInfo.vue'
-import CookieConsent from '@/components/CookieConsent.vue'
 import ConsentStatus from '@/components/ConsentStatus.vue'
 
 export default {
     components: {
         Cart,
         ConsentuaInfo,
-        CookieConsent,
         ConsentStatus
     }
 }
