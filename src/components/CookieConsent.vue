@@ -1,42 +1,36 @@
 <template>
-<div>
-    <div>
-        <el-button size="small" plain @click="openCookieModal">Open cookie popup</el-button>
-    </div>
-    <div id="CookieConsent" @click="closeCookieModal()">
+    <div id="CookieConsent"  @click="closeCookieModal()" >
         <div id="cookie-consent-container">
             <iframe scrolling="no" id="cookie-consent-iframe" src=""></iframe>
             <el-button @click="closeCookieModal()">Close</el-button>
         </div>
     </div>
-</div>
 </template>
 
 <script>
 import ConsentuaUIWrapper from '@/js/consentua-embed.js'
+import {TweenMax, Power4} from 'gsap'
 export default {
     name: 'CookieConsent',
-    data() {
-        return {
-            dialogVisible: false
-        };
+    computed: {
+      open:{
+        get: function () {
+          return this.$store.state.cookiePopOpen
+        },
+        set: function (val) {
+        this.$store.commit({
+                type: '_toggleCookiePopOpen',
+                value: val
+            })
+        }
+      }
     },
     methods: {
         openCookieModal() {
-            let CookieConsent = document.getElementById('CookieConsent');
-            let CookieConsentContainer = document.getElementById('cookie-consent-container');
-            CookieConsent.style.visibility = "visible";
-            CookieConsent.style.top = 0;
-            CookieConsentContainer.style.animationName = "animatetop";
-            CookieConsentContainer.style.top = 0;
+            this.open = true;
         },
         closeCookieModal() {
-            let CookieConsent = document.getElementById('CookieConsent');
-            let CookieConsentContainer = document.getElementById('cookie-consent-container');
-            CookieConsent.style.visibility = "hidden";
-            CookieConsent.style.top = "-200vh";
-            CookieConsentContainer.style.animationName = "animateout";
-            CookieConsentContainer.style.top = "-200vh";
+            this.open = false;
         },
         isConsented() {
             //user consented, do stuff:      
@@ -47,13 +41,7 @@ export default {
             this.$cookie.set('consented_cookie', 'You_gave_your_consent_for_this_cookie', 1);
             //close popup   
             window.setTimeout(function () {
-                //wait 950ms before modal close, for animations to finish
-                let CookieConsent = document.getElementById('CookieConsent');
-                let CookieConsentContainer = document.getElementById('cookie-consent-container');
-                CookieConsent.style.visibility = "hidden";
-                CookieConsent.style.top = "-200vh";
-                CookieConsentContainer.style.animationName = "animateout";
-                CookieConsentContainer.style.top = "-200vh";
+                this.open = false;
             }, 950);
         },
         notConsented() {
@@ -62,7 +50,7 @@ export default {
                 message: 'Consent not given, deleting cookie!',
                 type: 'warning'
             });
-            // cookie will be deleted in the store
+            // cookie will be deleted in the store.js
         },
         cb_ready(msg) {
             // when ready (onload)
@@ -109,6 +97,9 @@ export default {
         }
     },
     mounted() {
+        TweenMax.set(this.$el, {
+            y: this.$el.offsetHeight
+        })
         // Consentua
         let cid = '266', // Customer ID
             sid = '105', // Consentua service ID
@@ -121,95 +112,31 @@ export default {
         // set cb
         cookie_cwrap.onset = this.cb_set;
         cookie_cwrap.onready = this.cb_ready;
+    },
+    watch: {
+      open: function (open) {
+        const dX = open ? 0 : this.$el.offsetHeight
+        TweenMax.to(this.$el, 0.6, {
+          y: dX,
+          ease: Power4.easeOut
+        })
+      }
     }
 }
 </script>
 
 <style>
-@-webkit-keyframes animatetop {
-    0% {
-        top: -300px;
-        opacity: 0;
-        -webkit-transform: rotate(-10deg);
-        transform: rotate(-10deg);
-    }
-
-    80% {
-        top: 20px;
-    }
-
-    100% {
-        top: 0;
-        opacity: 1;
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-}
-
-@keyframes animatetop {
-    0% {
-        top: -200vh;
-        opacity: 0;
-        -webkit-transform: rotate(-10deg);
-        transform: rotate(-10deg);
-    }
-
-    80% {
-        top: 20px;
-    }
-
-    100% {
-        top: 0;
-        opacity: 1;
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-}
-
-@keyframes animateout {
-    0% {
-        top: 0;
-        opacity: 1;
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-
-    100% {
-        top: 200vh;
-    }
-}
-
-@-webkit-keyframes animatefade {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes animatefade {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
 #CookieConsent {
-    visibility: hidden;
+    /* visibility: hidden; */
     position: fixed;
     z-index: 1;
     left: 0;
-    top: -200vh;
+    top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(55, 55, 55, 0.61);
-    animation-name: animatefade;
+    /* animation-name: animatefade; */
     animation-duration: 0.4s;
 }
 
@@ -218,7 +145,7 @@ export default {
     position: fixed;
     left: 0;
     right: 0;
-    top: -200vh;
+    top: 0;
     padding: 1rem;
     display: flex;
     flex-direction: column;

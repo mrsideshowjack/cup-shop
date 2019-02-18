@@ -14,7 +14,9 @@ export const store = new Vuex.Store({
     ServiceId: 105,
     consentuaUID: false,
     consentuaConsents: [],
-    db: DemoDb
+    db: DemoDb,
+    sidebarOpen: false,
+    cookiePopOpen: false
   },
   mutations: {
     cartAdd(state, payload) {
@@ -122,6 +124,20 @@ export const store = new Vuex.Store({
         }
       }
     },
+    _toggleSidebar(state) {
+      state.sidebarOpen = !state.sidebarOpen
+    },
+    _toggleCookiePopOpen(state, payload) {
+      state.cookiePopOpen = payload.value      
+    }
+  },
+  actions: {
+    toggleSidebar ({ commit }) {
+      commit('_toggleSidebar')
+    },
+    toggleCookiePopOpen ({ commit }) {
+      commit('_toggleCookiePopOpen')
+    }
   },
   getters: {
     cartTotal: state => {
@@ -148,6 +164,8 @@ export const store = new Vuex.Store({
         result.amount = result.amount + x
       }
       return result;
-    }
+    },
+    sidebarOpen: state => state.sidebarOpen,
+    cookiePopOpen: state => state.cookiePopOpen
   }
 })

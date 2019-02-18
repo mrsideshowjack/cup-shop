@@ -24,7 +24,8 @@
                 <a id="ctaLink" href="https://consentua.com" alt="find out more about Consentua"><i class="el-icon-back"></i>Consentua.com</a>
             </div>
             <div>
-                <ConsentuaInfo />
+                <!-- <ConsentuaInfo /> -->
+                <sidebar-toggle/>
                 <Cart />
             </div>
         </el-header>
@@ -35,6 +36,8 @@
             <ConsentStatus />
         </el-footer>
     </el-container>
+    <CookieConsent />
+    <sidebar/>
 </div>
 </template>
 
@@ -42,12 +45,17 @@
 import Cart from '@/components/Cart.vue'
 import ConsentuaInfo from '@/components/ConsentuaInfo.vue'
 import ConsentStatus from '@/components/ConsentStatus.vue'
-
+import CookieConsent from '@/components/CookieConsent.vue'
+import Sidebar from '@/components/Sidebar.vue'
+import SidebarToggle from '@/components/SidebarToggle.vue'
 export default {
     components: {
         Cart,
         ConsentuaInfo,
-        ConsentStatus
+        CookieConsent,
+        ConsentStatus,
+        Sidebar, 
+        SidebarToggle
     }
 }
 </script>

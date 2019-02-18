@@ -22,7 +22,7 @@ import ConsentuaUIWrapper from '@/js/consentua-embed.js'
 export default {
     name: 'Newsletter',
     methods: {
-        cb_ready(msg) {
+        cb_ready() {
             // when ready (onload)
         },
         cb_set(msg) {
