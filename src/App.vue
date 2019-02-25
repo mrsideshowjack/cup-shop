@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-    <el-container>
+    <el-container id="el-container">
         <el-header height="auto">
             <div>
                 <router-link to="/" id="logo">
@@ -24,7 +24,6 @@
                 <a id="ctaLink" href="https://consentua.com" alt="find out more about Consentua"><i class="el-icon-back"></i>Consentua.com</a>
             </div>
             <div>
-                <!-- <ConsentuaInfo /> -->
                 <sidebar-toggle/>
                 <Cart />
             </div>
@@ -42,6 +41,7 @@
 </template>
 
 <script>
+import {TweenLite, Power4} from 'gsap'
 import Cart from '@/components/Cart.vue'
 import ConsentuaInfo from '@/components/ConsentuaInfo.vue'
 import ConsentStatus from '@/components/ConsentStatus.vue'
@@ -56,6 +56,25 @@ export default {
         ConsentStatus,
         Sidebar, 
         SidebarToggle
+    },
+    computed: {
+      open:{
+        get: function () {
+          return this.$store.state.sidebarOpen
+        },
+        set: function () {
+          this.$store.dispatch('toggleSidebar')
+        }
+      }
+    },
+    watch: {
+      open: function (open) {
+            if (open && window.innerWidth >= 1000) {
+                TweenLite.to('#el-container', 1, {css:{marginRight:300,autoRound:false}, ease:Power4.easeOut});
+            } else {
+                TweenLite.to('#el-container', 1, {css:{marginRight:0,autoRound:false}, ease:Power4.easeOut});
+            }
+        }
     }
 }
 </script>
