@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
     consentuaUID: false,
     consentuaConsents: [],
     db: DemoDb,
-    sidebarOpen: false,
+    sidebarOpen: true,
     cookiePopOpen: false
   },
   mutations: {
