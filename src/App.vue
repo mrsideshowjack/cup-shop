@@ -106,7 +106,7 @@ body {
 
 .el-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     border-bottom: solid 1px #e6e6e6;
