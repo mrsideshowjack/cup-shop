@@ -32,18 +32,14 @@
         <p>Look proof that consent is recorded.  Hook this up to your backend systems</p>
         <span><i>Consentua UID: </i>{{ consentuaUID }}</span>
         <span><i>Templates: </i>'63','100','98'</span>
-        <span><i>Consents: <br></i>
-        <span v-for="item in consentuaConsents" :key="item.id">
-            {{item.id}}:{{item.consent}}
-            <span v-if="item.consent">✅</span>
-        <span v-if="!item.consent">❌</span><br>
-        </span>
-        </span>
         <!-- <span><i>Consent Receipt Id: </i></span> -->
         <div id="btn-group">
             <el-button type="warning" size="small" plain @click="clearConsentuaUID">New Consentua UID</el-button>
             <router-link to="/consentua-test">
                 <el-button size="small" plain>Consetua API test page</el-button>
+            </router-link>
+            <router-link to="/map">
+                <el-button size="small" plain>Location Map test page</el-button>
             </router-link>
             <el-button size="small" @click="openCookie" plain>Open cookie popup</el-button>
         </div>
@@ -54,12 +50,27 @@
     </section>
     <section v-show="pages.page9">
         <h2>Contact Consentua here</h2>
+        <i class="el-icon-message"></i><br>
         <a href="https://consentua.com/contact">
                 <el-button size="small" plain>Contact Consentua</el-button>
         </a>
     </section>
-    <el-pagination layout="prev, next" :current-page.sync="selectedPage" :total="90" prev-text="< prev" next-text="next >">
-    </el-pagination>
+    <section id="consentContain">
+        <h3>Consents</h3>
+        <span v-for="item in consentuaConsents" :key="item.id" class="consent-row">
+            <span v-if="item.id == 236">Cookie</span>
+            <span v-else-if="item.id == 322">Newsletter</span>
+            <span v-else-if="item.id == 326">Location</span>
+            <span v-else>{{item.id}}</span>
+
+            <span v-if="item.consent">✅</span>
+            <span v-else-if="!item.consent">❌</span>
+        </span>
+    </section>
+    <section>
+        <el-button @click="decreasePage" icon="el-icon-arrow-left" v-bind:disabled="selectedPage == 1">Prev</el-button>
+        <el-button @click="increasePage" v-bind:disabled="selectedPage == 9">Next <i class="el-icon-arrow-right"></i></el-button>
+    </section>
 </div>
 </template>
 
@@ -88,6 +99,12 @@ export default {
         },
         openCookie() {
             this.$store.state.cookiePopOpen = true;
+        },
+        increasePage(){
+            if(this.selectedPage < 9) this.selectedPage ++
+        },
+        decreasePage(){
+            if(this.selectedPage > 1) this.selectedPage --
         }
     },
     computed: {
@@ -100,6 +117,23 @@ export default {
     },
     watch: {
         selectedPage: function (selectedPage) {
+            switch (selectedPage) {
+                case 2:
+                    this.openCookie()
+                    break;
+                case 3:
+                    // this.$router.go('cups')
+                    break;
+                case 4:
+                    // this.$router.go('checkout')
+                    break;
+                case 8:
+                    // this.$router.go('consent-dashboard')
+                    break;
+                default:
+                    break;
+            }
+
             // set all pages false
             let keys = Object.keys(this.pages);
             for (let i = 0; i < keys.length; i++) {
@@ -116,7 +150,7 @@ export default {
 
 <style scoped>
 #ConsentuaInfo {
-    height: 100%;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -145,5 +179,25 @@ export default {
     display: flex;
     max-height: 40px;
     margin: 0.2rem;
+}
+
+#consentContain{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    width: calc(100% - 2rem);
+    background-color: rgba(163, 38, 85, 0.4);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+#consentContain > h3 {
+    margin-top: 0px;
+}
+#consentContain .consent-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 </style>

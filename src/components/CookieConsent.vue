@@ -115,7 +115,7 @@ export default {
     },
     watch: {
       open: function (open) {
-        const dX = open ? 0 : this.$el.offsetHeight
+        const dX = open ? 0 : this.$el.offsetHeight + 500
         TweenMax.to(this.$el, 0.6, {
           y: dX,
           ease: Power4.easeOut

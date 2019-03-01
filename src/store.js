@@ -75,8 +75,11 @@ export const store = new Vuex.Store({
                 // has consents, create obj and set state
                 var x = []
                 for (let i = 0; i < response.data.Consent.Purposes.length; i++) {
+                  console.log(response.data.Consent.Purposes[i]);
+                  
                   x.push({
                     id: response.data.Consent.Purposes[i].PurposeId.toString(),
+                    template: response.data.Consent.Purposes[i].ConsentTemplateId.toString(),
                     consent: response.data.Consent.Purposes[i].Consent
                   })
                 }

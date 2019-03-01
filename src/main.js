@@ -5,8 +5,9 @@ import App from './App.vue'
 import router from './router'
 import { store } from './store'
 import './registerServiceWorker'
-import * as VueGoogleMaps from "vue2-google-maps";
 import * as VueCookie from "vue-cookie";
+import { L } from 'vue2-leaflet'
+import 'leaflet/dist/leaflet.css'
 
 Vue.use(VueCookie);
 
@@ -14,10 +15,15 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: process.env.VUE_APP_GMAP_API_KEY
-  }
+
+
+// this part resolve an issue where the markers would not appear
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
 

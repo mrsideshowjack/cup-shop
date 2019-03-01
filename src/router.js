@@ -40,6 +40,11 @@ export default new Router({
       component: () => import('./views/ConsentuaTest.vue')
     },
     {
+      path: '/map',
+      name: 'map',
+      component: () => import('./views/MapTest.vue')
+    },
+    {
       path: '/item/:itemId',
       name: 'item',
       component: () => import('./views/Item.vue')

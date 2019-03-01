@@ -22,6 +22,7 @@
     "vue-drag-it-dude": "^1.2.0",
     "vue-router": "^3.0.1",
     "vue2-google-maps": "^0.10.5",
+    "vue2-leaflet": "^1.2.3",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
