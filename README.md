@@ -33,14 +33,6 @@ npm run build
 npm run lint
 ```
 
-### ENVs
-
-Current environment variables, stored in `.env.local`
-
-```env
-VUE_APP_GMAP_API_KEY=XXXXX
-```
-
 ## To Deploy
 
 Every push to master will deploy a new version of this app. Deploys happen automatically

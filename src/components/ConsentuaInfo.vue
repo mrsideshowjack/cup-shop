@@ -30,7 +30,6 @@
     <section v-show="pages.page7">
         <h2>Behind the Scenes</h2>
         <p>Look proof that consent is recorded.  Hook this up to your backend systems</p>
-        <span><i>Consentua UID: </i>{{ consentuaUID }}</span>
         <span><i>Templates: </i>'63','100','98'</span>
         <!-- <span><i>Consent Receipt Id: </i></span> -->
         <div id="btn-group">
@@ -42,6 +41,8 @@
                 <el-button size="small" plain>Location Map test page</el-button>
             </router-link>
             <el-button size="small" @click="openCookie" plain>Open cookie popup</el-button>
+            <a href="https://consentua.com/get-consent-page/">
+            <el-button size="small" plain>Get consent page</el-button></a>
         </div>
     </section>
     <section v-show="pages.page8">
