@@ -10,13 +10,14 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     cart: [],
-    ClientId: 266,
-    ServiceId: 105,
-    consentuaUID: false,
     consentuaConsents: [],
     db: DemoDb,
     sidebarOpen: true,
-    cookiePopOpen: false
+    cookiePopOpen: false,
+    consentuaUID: false,
+    cid: '266', 
+    sid: '105', 
+    skey: 'ad2e97aa-2fbe-4993-92fe-598fc26a33ba'
   },
   mutations: {
     cartAdd(state, payload) {
@@ -56,15 +57,15 @@ export const store = new Vuex.Store({
       axios
         .get('https://api.consentua.com/serviceuser/AnonGetServiceUser', {
           params: {
-            serviceId: state.ServiceId,
+            serviceId: state.sid,
             identifier: state.consentuaUID
           }
         })
         .then(response => {
           axios
             .post('https://api.consentua.com/userconsent/AnonGetConsents', {
-              ClientId: state.ClientId,
-              ServiceId: state.ServiceId,
+              ClientId: state.cid,
+              ServiceId: state.sid,
               UserId: response.data.UserId
             })
             .then(response => {

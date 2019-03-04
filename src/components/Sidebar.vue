@@ -17,11 +17,7 @@
       TweenMax.set(this.$el, {
         x: this.$el.offsetWidth
       })
-      const dX = open ? 0 : this.$el.offsetWidth
-        TweenMax.to(this.$el, 0.6, {
-          x: dX,
-          ease: Power4.easeOut
-      })
+      this.toggleSidebar(open)
     },
     computed: {
       open:{
@@ -33,13 +29,18 @@
         }
       }
     },
-    watch: {
-      open: function (open) {
+    methods: {
+      toggleSidebar(open){
         const dX = open ? 0 : this.$el.offsetWidth
         TweenMax.to(this.$el, 0.6, {
           x: dX,
           ease: Power4.easeOut
         })
+      }
+    },
+    watch: {
+      open: function (open) {
+        this.toggleSidebar(open)
       }
     }
   }
@@ -58,6 +59,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
+    z-index: 9999;
   }
   #sidebarClose{
     align-self: flex-end;

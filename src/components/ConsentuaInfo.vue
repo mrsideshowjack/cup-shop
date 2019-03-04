@@ -56,7 +56,7 @@
                 <el-button size="small" plain>Contact Consentua</el-button>
         </a>
     </section>
-    <section id="consentContain">
+    <section id="consentContain" v-if="consentuaConsents.length > 0">
         <h3>Consents</h3>
         <span v-for="item in consentuaConsents" :key="item.id" class="consent-row">
             <span v-if="item.id == 236">Cookie</span>

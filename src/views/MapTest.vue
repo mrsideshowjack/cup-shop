@@ -1,7 +1,6 @@
 <template>
 <div id="MapTest">
     <LocationConsent id="LocationConsent" />
-    <Map id="mapPageMap"/>
 </div>
 </template>
 
@@ -23,15 +22,6 @@ export default {
 </script>
 
 <style>
-#MapTest {
-  display: grid;
-  grid-template-columns: 0.5fr 1.5fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: ". .";
-}
-#MapTest #LocationConsent{
-    /* max-width: 20vw; */
-}
 #MapTest #mapPageMap{
     height: 500px;
         width: 80%;

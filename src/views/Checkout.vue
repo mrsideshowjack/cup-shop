@@ -10,7 +10,7 @@
         <el-step title="Submit"></el-step>
     </el-steps>
     <el-form id="checkout-form" ref="form" :model="form" label-width="120px">
-        <section v-show="pages.page1">
+        <section >
         <el-form-item label="Name">
             <el-input v-model="form.name"></el-input>
         </el-form-item>
@@ -51,18 +51,17 @@
             </el-col>
         </el-form-item>
         </section>
-        <section v-show="pages.page2">
+        <section >
         <el-form-item :span="11" id="checkout-consent-contain">
-            <Map id="checkoutMap" />
             <LocationConsent />
         </el-form-item>
         </section>
-        <section v-show="pages.page3">
+        <section >
         <el-form-item :span="11" id="checkout-consent-contain">
             <Newsletter />
         </el-form-item>
         </section>
-        <section v-show="pages.page4">
+        <section >
         <el-form-item>
             <el-button type="primary" @click="onSubmit" id="checkout-btn"><svg aria-hidden="true" data-prefix="fal" width="25" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M551.991 64H129.28l-8.329-44.423C118.822 8.226 108.911 0 97.362 0H12C5.373 0 0 5.373 0 12v8c0 6.627 5.373 12 12 12h78.72l69.927 372.946C150.305 416.314 144 431.42 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-17.993-7.435-34.24-19.388-45.868C506.022 391.891 496.76 384 485.328 384H189.28l-12-64h331.381c11.368 0 21.177-7.976 23.496-19.105l43.331-208C578.592 77.991 567.215 64 551.991 64zM240 448c0 17.645-14.355 32-32 32s-32-14.355-32-32 14.355-32 32-32 32 14.355 32 32zm224 32c-17.645 0-32-14.355-32-32s14.355-32 32-32 32 14.355 32 32-14.355 32-32 32zm38.156-192H171.28l-36-192h406.876l-40 192z"></path></svg> Checkout</el-button>
         </el-form-item>
@@ -79,7 +78,6 @@
 import ConsentuaUIWrapper from '@/js/consentua-embed.js'
 import CartList from '@/components/CartList.vue'
 import Newsletter from '@/components/Newsletter.vue'
-import Map from "@/components/Map.vue";
 import LocationConsent from "@/components/LocationConsent.vue";
 export default {
     name: 'Checkout',
@@ -87,20 +85,19 @@ export default {
         ConsentuaUIWrapper,
         CartList,
         Newsletter,
-        Map,
         LocationConsent
     },
     data() {
         return {
             form: {
-                name: '',
-                email: '',
-                phone: '',
-                address1: '',
+                name: 'Jane Melon',
+                email: 'jane@melon.co.uk',
+                phone: '0123456783',
+                address1: '164 Melon Street',
                 address2: '',
-                city: '',
-                postcode: '',
-                country: '',
+                city: 'Melon-ville',
+                postcode: 'ME1 0NE',
+                country: 'UK',
                 date1: '',
                 date2: '',
             },
@@ -109,12 +106,7 @@ export default {
                 page1: true,
                 page2: false,
                 page3: false,
-                page4: false,
-                page5: false,
-                page6: false,
-                page7: false,
-                page8: false,
-                page9: false
+                page4: false
             }
         }
     },
@@ -146,28 +138,16 @@ export default {
             console.warn("Consent received from Consentua", msg);
         }
     },
-     
-    mounted() {
-        var cid = '266'; // Customer ID
-        var sid = '105'; // Consentua service ID
-        var skey = 'ad2e97aa-2fbe-4993-92fe-598fc26a33ba'; // Consentua service key
-        var tids = ['100', '98']; // Template ID
-
-        for (let i = 0; i < tids.length; i++) {
-            let iframe = document.createElement("iframe");
-            iframe.id = "consentua-iframe-" + [i];
-            iframe.class = "consentua-iframe";
-            document.getElementById('checkout-consentua').appendChild(iframe);
-            let cwrap = new ConsentuaUIWrapper(iframe, cid, this.$store.state.consentuaUID, tids[i], sid, skey, this.cb_msg, 'en', {
-                ix: "https://kni-test-node.herokuapp.com/custom-interaction.html"
-            });
-            // set cb
-            cwrap.onset = this.cb_set;
-            cwrap.onready = this.cb_ready;
-        }
-    },
     watch: {
         selectedPage: function (selectedPage) {
+            switch (selectedPage) {
+                case 2:
+                    this.openCookie()
+                    break;
+                default:
+                    break;
+            }
+
             // set all pages false
             let keys = Object.keys(this.pages);
             for (let i = 0; i < keys.length; i++) {
@@ -214,17 +194,6 @@ export default {
 
 #Checkout #checkout-btn svg {
     height: 15px;
-}
-
-#Checkout #checkout-consentua {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
-    min-height: 600px;
-}
-#Checkout #checkoutMap{
-    height: 300px;
 }
 #Checkout #checkout-consentua iframe {
     border: none;

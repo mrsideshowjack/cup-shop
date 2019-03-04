@@ -38,17 +38,14 @@ export default {
     },
     mounted() {
         // Consentua
-        let cid = '266', // Customer ID
-            sid = '105', // Consentua service ID
-            skey = 'ad2e97aa-2fbe-4993-92fe-598fc26a33ba', // Consentua service key
-            tid = '98'; // Template ID
+        let tid = '98'; // Template ID
         var iframe = document.querySelector('#newsletter-consent-iframe');
-        var cookie_cwrap = new ConsentuaUIWrapper(iframe, cid, this.$store.state.consentuaUID, tid, sid, skey, this.cb_msg, 'en',{
+        var newsletter_cwrap = new ConsentuaUIWrapper(iframe, this.$store.state.cid, this.$store.state.consentuaUID, tid, this.$store.state.sid, this.$store.state.skey, this.cb_msg, 'en',{
                 ix: "https://kni-test-node.herokuapp.com/custom-interaction.html"
             });
         // set cb
-        cookie_cwrap.onset = this.cb_set;
-        cookie_cwrap.onready = this.cb_ready;
+        newsletter_cwrap.onset = this.cb_set;
+        newsletter_cwrap.onready = this.cb_ready;
     }
 }
 </script>

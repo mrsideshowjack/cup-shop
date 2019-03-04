@@ -67,20 +67,21 @@ export default {
         }
       }
     },
-    mounted() {
-        if (open && window.innerWidth >= 1000) {
-                TweenLite.to('#el-container', 1, {css:{marginRight:300,autoRound:false}, ease:Power4.easeOut});
-            } else {
-                TweenLite.to('#el-container', 1, {css:{marginRight:0,autoRound:false}, ease:Power4.easeOut});
-            }
-    },
-    watch: {
-      open: function (open) {
+    methods: {
+        toggleSidebar(open){
             if (open && window.innerWidth >= 1000) {
                 TweenLite.to('#el-container', 1, {css:{marginRight:300,autoRound:false}, ease:Power4.easeOut});
             } else {
                 TweenLite.to('#el-container', 1, {css:{marginRight:0,autoRound:false}, ease:Power4.easeOut});
             }
+        }
+    },
+    mounted() {
+        this.toggleSidebar(this.open)
+    },
+    watch: {
+      open: function (open) {
+            this.toggleSidebar(open)
         }
     }
 }
