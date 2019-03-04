@@ -70,7 +70,7 @@
     </section>
     <section>
         <el-button @click="decreasePage" icon="el-icon-arrow-left" v-bind:disabled="selectedPage == 1">Prev</el-button>
-        <el-button @click="increasePage" v-bind:disabled="selectedPage == 9">Next <i class="el-icon-arrow-right"></i></el-button>
+        <el-button id="nextBtn" @click="increasePage" v-bind:disabled="selectedPage == 9" class="pulse">Next <i class="el-icon-arrow-right"></i></el-button>
     </section>
 </div>
 </template>
@@ -103,9 +103,11 @@ export default {
         },
         increasePage(){
             if(this.selectedPage < 9) this.selectedPage ++
+            document.getElementById('nextBtn').classList.remove('pulse')
         },
         decreasePage(){
             if(this.selectedPage > 1) this.selectedPage --
+            document.getElementById('nextBtn').classList.remove('pulse')
         }
     },
     computed: {
@@ -123,13 +125,13 @@ export default {
                     this.openCookie()
                     break;
                 case 3:
-                    // this.$router.go('cups')
+                    this.$router.push('cups')
                     break;
                 case 4:
-                    // this.$router.go('checkout')
+                    this.$router.push('checkout')
                     break;
                 case 8:
-                    // this.$router.go('consent-dashboard')
+                    this.$router.push('consent-dashboard')
                     break;
                 default:
                     break;
@@ -157,7 +159,6 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    user-select: none;
 }
 
 #ConsentuaInfo h2 {

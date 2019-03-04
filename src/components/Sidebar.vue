@@ -17,6 +17,11 @@
       TweenMax.set(this.$el, {
         x: this.$el.offsetWidth
       })
+      const dX = open ? 0 : this.$el.offsetWidth
+        TweenMax.to(this.$el, 0.6, {
+          x: dX,
+          ease: Power4.easeOut
+      })
     },
     computed: {
       open:{

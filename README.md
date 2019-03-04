@@ -40,7 +40,7 @@ note: `server.js` is only used to serve the static site on heroku, if already ha
 
 ### VM
 
-Just clone this repo and run the start bash script to install the dependencies, and build the `dist/`
+Just clone this repo and run the start bash script to install the dependencies, and build to the `dist/` build directory where the web app is served on the production VM
 
 ```bash
 sh start.sh

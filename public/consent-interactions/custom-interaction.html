@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>custom ui interaction</title>
+    <script src="https://websdk.consentua.com/websdk/consentua-interaction.js"></script>
+    <script src="https://websdk.consentua.com/websdk/comms.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #loading {
+            font-family: 'Open Sans', sans-serif;
+            width: 80%;
+            display: block;
+            position: relative;
+            color: #fff;
+            background-color: #9A1144;
+            padding: 1rem;
+            margin: 1.5rem auto;
+            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #loading:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.4);
+            -webkit-animation: loadBar 2s cubic-bezier(.09, .89, .7, .71) infinite;
+            animation: loadBar 2s cubic-bezier(.09, .89, .7, .71) infinite;
+        }
+
+        #err {
+            font-family: 'Open Sans', sans-serif;
+            width: 80%;
+            display: none;
+            color: #fff;
+            background-color: #F44336;
+            padding: 1rem;
+            margin: 1.5rem auto;
+            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #main {
+            font-family: 'Open Sans', sans-serif;
+            color: #212121;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding: 1rem;
+            border-radius: 20px;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        ol#purposes {
+            max-height: 0;
+            list-style: none;
+            -webkit-transition: max-height 0.4s ease-out;
+            transition: max-height 0.4s ease-out;
+            overflow: hidden;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 0rem 0rem 0rem 1rem;
+            margin: 0.5rem 0rem;
+        }
+
+        ol#purposes.anim-down {
+            max-height: 500px;
+            -webkit-transition: max-height 0.4s ease-in;
+            transition: max-height 0.4s ease-in;
+        }
+
+        ol#purposes>li {
+            margin-bottom: 1rem;
+        }
+
+        hr {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #9A1144;
+        }
+
+        @-webkit-keyframes loadBar {
+            0% {
+                left: -110%;
+            }
+
+            100% {
+                left: 110%;
+            }
+        }
+
+        @keyframes loadBar {
+            0% {
+                left: -110%;
+            }
+
+            100% {
+                left: 110%;
+            }
+        }
+
+        @-webkit-keyframes dothabottomcheck {
+            0% {
+                height: 0;
+            }
+
+            100% {
+                height: 50px;
+            }
+        }
+
+        @keyframes dothabottomcheck {
+            0% {
+                height: 0;
+            }
+
+            100% {
+                height: 50px;
+            }
+        }
+
+        @keyframes dothatopcheck {
+            0% {
+                height: 0;
+            }
+
+            50% {
+                height: 0;
+            }
+
+            100% {
+                height: 120px;
+            }
+        }
+
+        @-webkit-keyframes dothatopcheck {
+            0% {
+                height: 0;
+            }
+
+            50% {
+                height: 0;
+            }
+
+            100% {
+                height: 120px;
+            }
+        }
+
+        #question {
+            font-weight: normal;
+            max-width: 90%;
+        }
+
+        #btn {
+            -webkit-box-flex: 16%;
+            -ms-flex: 16%;
+            flex: 16%;
+            font-family: 'Raleway', 'FontAwesome';
+            padding: 0.8rem;
+            margin: 1rem 2rem;
+            color: #F6F6F6;
+            border: 1px solid #4CAF50;
+            -webkit-transition: 200ms;
+            transition: 200ms;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            color: #F6F6F6;
+            background: #4CAF50;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            font-size: 1.1rem;
+            height: 2rem;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .consent-check-contain input[type=checkbox] {
+            display: none;
+        }
+
+        .consent-check-contain {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding-left: 1rem;
+        }
+
+        .consent-check-contain #toggle-assent-lbl {
+            -webkit-box-flex: 70%;
+            -ms-flex: 70%;
+            flex: 70%;
+            cursor: pointer;
+            margin: 0px 0px 1rem 0px;
+        }
+
+        .consent-check-contain .check-box {
+            -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+            -webkit-box-flex: initial !important;
+            -ms-flex: initial !important;
+            flex: initial !important;
+            height: 100px;
+            width: 100px;
+            background-color: #fff;
+            border: 10px solid #455A64;
+            border-radius: 25px;
+            position: relative;
+            display: inline-block;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: border-color ease 0.2s;
+            transition: border-color ease 0.2s;
+            cursor: pointer;
+            margin-right: -2rem;
+        }
+
+        .check-box::before,
+        .check-box::after {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            position: absolute;
+            height: 0;
+            width: 20px;
+            background-color: #4CAF50;
+            display: inline-block;
+            -webkit-transform-origin: left top;
+            transform-origin: left top;
+            border-radius: 5px;
+            content: ' ';
+            -webkit-transition: opacity ease .5;
+            transition: opacity ease .5;
+        }
+
+        .check-box::before {
+            top: 72px;
+            left: 41px;
+            -webkit-box-shadow: 0 0 0 8px #fff;
+            box-shadow: 0 0 0 8px #fff;
+            -webkit-transform: rotate(-135deg);
+            transform: rotate(-135deg);
+        }
+
+        .check-box::after {
+            top: 37px;
+            left: 5px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        .consent-check-contain input[type=checkbox]:checked+#btn>.check-box {
+            border-color: #4CAF50;
+        }
+
+        .consent-check-contain input[type=checkbox]:checked+#btn>.check-box::after {
+            height: 50px;
+            -webkit-animation: dothabottomcheck 0.2s ease 0s forwards;
+            animation: dothabottomcheck 0.2s ease 0s forwards;
+        }
+
+        .consent-check-contain input[type=checkbox]:checked+#btn>.check-box::before {
+            height: 120px;
+            -webkit-animation: dothatopcheck 0.4s ease 0s forwards;
+            animation: dothatopcheck 0.4s ease 0s forwards;
+        }
+
+        span#drop-down {
+            padding-left: 1rem;
+            border-radius: 10px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            cursor: pointer;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        span#drop-down:hover {
+            color: #9A1144;
+            background-color: #e4e4e4;
+        }
+
+        span#drop-down #caret {
+            -webkit-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+            height: 2rem;
+            margin: 0rem 0.6rem;
+        }
+
+        @media only screen and (max-width: 550px) {
+            .consent-check-contain #toggle-assent-lbl {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            #btn {
+                margin: 1rem auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">
+        Please wait...
+    </div>
+    <div id="err"></div>
+    <main id="main">
+        <div class="consent-check-contain" id="assent">
+            <label id="toggle-assent-lbl" for="toggle-assent">
+                <h3 id="question"></h3>
+            </label>
+            <input type="checkbox" id="toggle-assent" name="Consent" />
+            <label id="btn" for="toggle-assent">OK
+                <label for="toggle-assent" class="check-box"></label>
+            </label>
+        </div>
+
+        <span id="drop-down"><span>Tell me more</span>
+            <svg aria-hidden="true" id="caret" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224 512">
+                <path fill="currentColor" d="M0 144.048v223.895c0 42.638 51.731 64.151 81.941 33.941l112-111.943c18.745-18.745 18.746-49.137 0-67.882l-112-111.952C51.792 79.958 0 101.325 0 144.048zM160 256L48 368V144l112 112z"></path>
+            </svg>
+        </span>
+        <ol id="purposes"></ol>
+    </main>
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        document.body.addEventListener("consentua-ready", function () {
+            console.log("Consentua is ready; setting up the simple interaction", window.consentua);
+            if (getParameterByName('c') == 'l') {
+                document.getElementById('main').style.color = '#FFF';
+            }
+            var pgs = window.consentua.template.PurposeGroups;
+            console.log("Purpose groups", pgs);
+            document.getElementById('question').innerHTML = window.consentua.template.Question;
+            for (let i = 0; i < pgs.length; i++) {
+                let pg = pgs[i];
+                let purposes = "";
+                for (var j in pg.Purposes) {
+                    purposes += "<b>" + pg.Purposes[j].DataUseText + " " + pg.Purposes[j].DataUse +
+                        "</b><br />" + pg.Purposes[j].DataPurposeText +
+                        " " + pg.Purposes[j].DataPurpose;
+                }
+                let p = document.createElement('li');
+                p.innerHTML = purposes + "<br />";
+                document.getElementById('purposes').appendChild(p);
+                document.getElementById('toggle-assent').checked = window.consentua.getConsent()[i].consent || false;
+            }
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('main').style.display = 'block';
+            window.consentua.ready();
+            document.getElementById('toggle-assent').addEventListener('change', function(event){
+                var groups = window.consentua.template.PurposeGroups;
+                var groupids = [];
+                for (var i in groups) {
+                    groupids.push(i);
+                }
+                console.log("Toggle consent on purpose groups", groupids, event.target.checked);
+                window.consentua.setPgConsent(groupids, event.target.checked);
+            });
+            document.getElementById('drop-down').addEventListener('click', function(event){
+                var p = document.getElementById('purposes'),
+                    c = document.getElementById('caret');
+                if (p.classList.contains('anim-down')) {
+                    p.classList.remove('anim-down');
+                    c.style.transform = "rotate(0deg)";
+                } else {
+                    p.classList.add('anim-down');
+                    c.style.transform = "rotate(90deg)";
+                }
+            });
+        }, false);
+    </script>
+</body>
+
+</html>

@@ -33,7 +33,6 @@
   font-size: 14px;
   border-radius: 4px;
   margin: 0.5rem;
-  /* z-index: 4; */
 }
 </style>
 

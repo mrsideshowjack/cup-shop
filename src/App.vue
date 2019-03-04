@@ -67,6 +67,13 @@ export default {
         }
       }
     },
+    mounted() {
+        if (open && window.innerWidth >= 1000) {
+                TweenLite.to('#el-container', 1, {css:{marginRight:300,autoRound:false}, ease:Power4.easeOut});
+            } else {
+                TweenLite.to('#el-container', 1, {css:{marginRight:0,autoRound:false}, ease:Power4.easeOut});
+            }
+    },
     watch: {
       open: function (open) {
             if (open && window.innerWidth >= 1000) {
@@ -103,7 +110,18 @@ body {
         opacity: 1;
     }
 }
-
+@keyframes shadow-pulse
+{
+  0% {
+    box-shadow: 0 0 0 0px rgba(163, 38, 85, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 35px rgba(163, 38, 85, 0);
+  }
+}
+.pulse{
+    animation: shadow-pulse 1s infinite;
+}
 .el-header {
     display: flex;
     justify-content: space-evenly;
@@ -139,7 +157,6 @@ body {
     color: #fff;
     padding: 0.8rem;
     border-radius: 0.3rem;
-    /* margin-left: -17px; */
     overflow: hidden;
 }
 
@@ -185,4 +202,5 @@ body {
 .el-message-box {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
+
 </style>

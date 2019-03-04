@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>custom interaction</title>
+    <script src="https://websdk.consentua.com/websdk/consentua-interaction.js"></script>
+    <script src="https://websdk.consentua.com/websdk/comms.js"></script>
+    <style>
+        main{
+            text-align: center;
+        }
+        #tgl-contain {
+            margin: 5px auto;
+        }
+
+        #cb {
+            display: none;
+        }
+
+        .tgl+.tgl-lbl {
+            outline: 0;
+            display: block;
+            width: 4em;
+            height: 2em;
+            position: relative;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin: 0px auto;
+        }
+
+        .tgl+.tgl-lbl:after,
+        .tgl+.tgl-lbl:before {
+            position: relative;
+            display: block;
+            content: "";
+            width: 50%;
+            height: 100%;
+        }
+
+        .tgl+.tgl-lbl:after {
+            left: 0;
+        }
+
+        .tgl+.tgl-lbl:before {
+            display: none;
+        }
+
+        .tgl:checked+.tgl-lbl:after {
+            left: 50%;
+        }
+
+        .tgl-cb+.tgl-lbl {
+            background: #f0f0f0;
+            border-radius: 2em;
+            padding: 2px;
+            -webkit-transition: all .4s ease;
+            transition: all .4s ease;
+        }
+
+        .tgl-cb+.tgl-lbl:after {
+            border-radius: 50%;
+            background: #fff;
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+        }
+
+        .tgl-cb:checked+.tgl-lbl {
+            background: #9FD6AE;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="tgl-contain">
+            <input class="tgl tgl-cb" id="cb" type="checkbox" />
+            <label class="tgl-lbl" for="cb"></label>
+        </div>
+        <span>Swipe right to consent</span>
+    </main>
+    <script>
+        document.body.addEventListener("consentua-ready", function () {
+            console.log("Consentua is ready; setting up the simple interaction", window.consentua);
+            for (let i = 0; i < window.consentua.template.PurposeGroups.length; i++) {
+                document.getElementById('cb').checked = window.consentua.getConsent()[i].consent;
+                window.consentua.ready();
+            }
+            // on consent change
+            document.getElementById('cb').addEventListener('change', (event) => {
+                var groups = window.consentua.template.PurposeGroups;
+                var groupids = [];
+                for (var i in groups) {
+                    groupids.push(i);
+                }
+                console.log("Toggle consent on purpose groups", groupids, event.target.checked);
+                window.consentua.setPgConsent(groupids, event.target.checked);
+            });
+        }, false);
+    </script>
+</body>
+
+</html>

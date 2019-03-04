@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
     consentuaUID: false,
     consentuaConsents: [],
     db: DemoDb,
-    sidebarOpen: false,
+    sidebarOpen: true,
     cookiePopOpen: false
   },
   mutations: {
@@ -92,6 +92,8 @@ export const store = new Vuex.Store({
             .catch(error => console.warn(error))
         })
         .catch(error => console.warn(error))
+
+        // setTimeout(function(){ state.sidebarOpen == true; }, 3000);
     },
     clearCartStorage(state) {
       state.cart = [];
