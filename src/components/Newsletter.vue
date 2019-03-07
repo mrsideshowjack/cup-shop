@@ -41,7 +41,7 @@ export default {
         let tid = '98'; // Template ID
         var iframe = document.querySelector('#newsletter-consent-iframe');
         var newsletter_cwrap = new ConsentuaUIWrapper(iframe, this.$store.state.cid, this.$store.state.consentuaUID, tid, this.$store.state.sid, this.$store.state.skey, this.cb_msg, 'en',{
-                ix: "https://kni-test-node.herokuapp.com/custom-interaction.html"
+                ix: "https://ui.consentua.com/ui-onepurpose/ui-onepurpose.html"
             });
         // set cb
         newsletter_cwrap.onset = this.cb_set;

@@ -14,12 +14,10 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "element-ui": "^2.4.8",
-    "express": "^4.16.4",
     "gsap": "^2.1.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
     "vue-cookie": "^1.1.4",
-    "vue-drag-it-dude": "^1.2.0",
     "vue-router": "^3.0.1",
     "vue2-leaflet": "^1.2.3",
     "vuex": "^3.0.1"

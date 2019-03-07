@@ -15,9 +15,9 @@ export const store = new Vuex.Store({
     sidebarOpen: true,
     cookiePopOpen: false,
     consentuaUID: false,
-    cid: '266', 
-    sid: '105', 
-    skey: 'ad2e97aa-2fbe-4993-92fe-598fc26a33ba'
+    cid: process.env.VUE_APP_CONSENTUA_CID,
+    sid: process.env.VUE_APP_CONSENTUA_SID,
+    skey: process.env.VUE_APP_CONSENTUA_SKEY
   },
   mutations: {
     cartAdd(state, payload) {

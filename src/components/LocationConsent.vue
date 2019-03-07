@@ -46,15 +46,23 @@ export default {
         let tid = '100'; // Template ID
         var iframe = document.querySelector('#location-consent-iframe');
         var cookie_cwrap = new ConsentuaUIWrapper(iframe, this.$store.state.cid, this.$store.state.consentuaUID, tid, this.$store.state.sid, this.$store.state.skey, this.cb_msg, 'en', {
-            ix: "https://kni-test-node.herokuapp.com/custom-interaction.html"
+            ix: "https://ui.consentua.com/ui-onepurpose/ui-onepurpose.html"
         });
         // set cb
         cookie_cwrap.onset = this.cb_set;
         cookie_cwrap.onready = this.cb_ready;
     },
     computed: {
+        consents: function () {
+            return this.$store.state.consentuaConsents;
+        },
         isconsent: function () {
-            return this.$store.state.consentuaConsents.find(x => x.id === '326').consent || false;
+            console.log(this.consents);
+            if (this.consents.length >= 1) {
+                return this.consents.find(x => x.id === '326').consent 
+            } else{
+                return false;
+            }
         }
     },
 }

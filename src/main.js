@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import './styles/index.css'
 import ElementUI from 'element-ui'
+import locale from 'element-ui/lib/locale/lang/en'
 import App from './App.vue'
 import router from './router'
 import { store } from './store'
@@ -13,10 +14,9 @@ Vue.use(VueCookie);
 
 Vue.config.productionTip = false
 
-Vue.use(ElementUI)
+Vue.use(ElementUI, { locale })
 
-
-
+// leaflet map options
 // this part resolve an issue where the markers would not appear
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -25,7 +25,6 @@ L.Icon.Default.mergeOptions({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
-
 
 new Vue({
   render: h => h(App),

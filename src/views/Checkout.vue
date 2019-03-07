@@ -3,12 +3,12 @@
     <CartList />
     <section id="checkoutPages">
     <h1>Checkout</h1>
-    <el-steps :active="selectedPage" align-center finish-status="success">
+    <!-- <el-steps :active="selectedPage" align-center finish-status="success">
         <el-step title="Your Details"></el-step>
         <el-step title="Location"></el-step>
         <el-step title="Newsletter"></el-step>
         <el-step title="Submit"></el-step>
-    </el-steps>
+    </el-steps> -->
     <el-form id="checkout-form" ref="form" :model="form" label-width="120px">
         <section >
         <el-form-item label="Name">
@@ -52,12 +52,12 @@
         </el-form-item>
         </section>
         <section >
-        <el-form-item :span="11" id="checkout-consent-contain">
+        <el-form-item :span="11" id="LocationConsentItem" class="checkout-consent-contain">
             <LocationConsent />
         </el-form-item>
         </section>
         <section >
-        <el-form-item :span="11" id="checkout-consent-contain">
+        <el-form-item :span="11" id="NewsletterItem" class="checkout-consent-contain">
             <Newsletter />
         </el-form-item>
         </section>
@@ -67,8 +67,8 @@
         </el-form-item>
         </section>
     </el-form>
-    <el-pagination layout="prev, next" :current-page.sync="selectedPage" :total="90" prev-text="< prev" next-text="next >">
-    </el-pagination>
+    <!-- <el-pagination layout="prev, next" :current-page.sync="selectedPage" :total="90" prev-text="< prev" next-text="next >">
+    </el-pagination> -->
     </section>
 </div>
 </template>
@@ -111,7 +111,8 @@ export default {
         }
     },
     methods: {
-        onSubmit() {
+        onSubmit(e) {
+            e.preventDefault();
             this.$alert('Thanks for your \'order\', please check out <a href="https://consentua.com">Consentua.com</a>', 'Thanks', {
                 confirmButtonText: 'OK',
                 dangerouslyUseHTMLString: true
@@ -191,7 +192,9 @@ export default {
     align-items: stretch;
     justify-content: center;
 }
-
+#Checkout #checkout-btn{
+    margin-left: 0px !important;
+}
 #Checkout #checkout-btn svg {
     height: 15px;
 }
@@ -199,7 +202,7 @@ export default {
     border: none;
 }
 
-#Checkout #checkout-consent-contain .el-form-item__content {
+#Checkout .checkout-consent-contain .el-form-item__content {
     margin: 0px !important;
 }
 </style>

@@ -27,18 +27,13 @@ This will compile a static build into `dist/`
 npm run build
 ```
 
-### Lints and fixes files
+### Lint's and fixes files
 
 ```bash
 npm run lint
 ```
 
 ## To Deploy
-
-Every push to master will deploy a new version of this app. Deploys happen automatically
-note: `server.js` is only used to serve the static site on heroku, if already have a server, just serve the `dist/` directory after building.
-
-### VM
 
 Just clone this repo and run the start bash script to install the dependencies, and build to the `dist/` build directory where the web app is served on the production VM
 

@@ -59,7 +59,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    z-index: 9999;
+    z-index: 9998;
   }
   #sidebarClose{
     align-self: flex-end;

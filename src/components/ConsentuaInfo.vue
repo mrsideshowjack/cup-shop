@@ -130,6 +130,12 @@ export default {
                 case 4:
                     this.$router.push('checkout')
                     break;
+                case 5:
+                    this.$router.push('checkout#LocationConsentItem')
+                    break;
+                case 6:
+                    this.$router.push('checkout#NewsletterItem')
+                    break;
                 case 8:
                     this.$router.push('consent-dashboard')
                     break;

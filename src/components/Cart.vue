@@ -51,5 +51,6 @@ export default {
 <style scoped>
 #Cart {
     margin: 0.5rem;
+    z-index: 9999;
 }
 </style>
