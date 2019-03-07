@@ -136,8 +136,14 @@ export default {
                 case 6:
                     this.$router.push('checkout#NewsletterItem')
                     break;
+                case 7:
+                    this.$router.push('consentua-test')
+                    break;
                 case 8:
                     this.$router.push('consent-dashboard')
+                    break;
+                case 9:
+                    this.$router.push('about')
                     break;
                 default:
                     break;

@@ -1,8 +1,8 @@
 <template>
 <div class="home">
     <section class="hero">
-    <h1>Cup Shop 🥤</h1>
-    <img src="@/assets/cup-shop-logo-512x512.png"> 
+    <h1 id="title">Cup Shop 🥤</h1>
+    <img id="heroImg" src="@/assets/cup-shop-logo-512x512.png"> 
     </section>
     <section class="explain">
     <article>
@@ -26,11 +26,17 @@
 
 <script>
 import Newsletter from '@/components/Newsletter.vue'
+import {Tweenlite, Power4} from 'gsap'
 export default {
     name: 'home',
     components: {
         Newsletter
-    }
+    },
+    mounted() {
+        TweenLite.to('#title', 3, {css:{opacity:1,transform: 'rotate(0deg)'}, ease:Power4.easeOut})
+        TweenLite.to('#heroImg', 3, {css:{opacity:1,transform: 'translateY(0px)'}, ease:Power4.easeOut})
+        TweenLite.to('.explain', 3, {css:{opacity:1,transform: 'translateY(0px)'}, ease:Power4.easeOut}).delay(0.5)
+    },
 }
 </script>
 
@@ -41,15 +47,19 @@ export default {
     justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
-    background: linear-gradient(#e59191, white);
+    background: linear-gradient(#ff6262, #e59191, white);
     min-height: 80vh;
 }
 .hero > h1{
     font-size: 6rem;
     text-shadow: -3px 5px 4px rgba(0, 0, 0, 0.2);
-    color: #000
+    color: #000;
+    opacity: 0;
+    transform: rotate(30deg);
 }
-.hero > img{
+.hero #heroImg{
+    opacity: 0;
+    transform: translateY(-200px);
     max-height: 400px;
 }
 .explain{
@@ -60,9 +70,12 @@ export default {
     align-items: center;
     min-height: 50vh;
     padding: 1rem;
+    opacity: 0;
+    transform: translateY(-200px);
 }
 .explain > img{
     max-width: 80%;
+        width: 100%;
     margin: 0px auto;
 }
 .explain > article{

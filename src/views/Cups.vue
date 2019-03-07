@@ -1,5 +1,5 @@
 <template>
-<div class="cups">
+<div id="Cups">
     <ProductList />
 </div>
 </template>
@@ -17,8 +17,9 @@ export default {
 </script>
 
 <style scoped>
-.cups{
+#Cups{
     padding: 1rem;
+    background: linear-gradient(to right,white 40%,#f56c6c);
 }
 </style>
 

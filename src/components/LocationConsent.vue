@@ -57,7 +57,6 @@ export default {
             return this.$store.state.consentuaConsents;
         },
         isconsent: function () {
-            console.log(this.consents);
             if (this.consents.length >= 1) {
                 return this.consents.find(x => x.id === '326').consent 
             } else{

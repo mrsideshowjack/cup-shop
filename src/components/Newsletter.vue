@@ -4,16 +4,13 @@
     <h1>Join the Newsletter!</h1>
     <p>Get the latest news and disscusion about the world of paper cups! 🥤</p>
     <p>(this form is a demonstration, the input is not used in any way)</p>
-    <el-form>
-        <el-input
-        placeholder="email address"
-        type="email"
-        prefix-icon="el-icon-message"
-        v-model="input21">
-        </el-input>
+    <el-input
+    placeholder="email address"
+    type="email"
+    prefix-icon="el-icon-message">
+    </el-input>
     <iframe scrolling="no" id="newsletter-consent-iframe" src=""></iframe>
-    <el-button type="primary" native-type="submit">Submit</el-button>
-    </el-form>
+    <el-button type="primary">Submit</el-button>
 </div>
 </template>
 

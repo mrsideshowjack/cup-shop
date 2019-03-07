@@ -18,6 +18,10 @@
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    background: linear-gradient(white 60%,#f56c6c);
+    width: 100%;
+    height: 100%;
+    min-height: 93vh;
 }
 
 .about p {

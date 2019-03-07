@@ -31,9 +31,7 @@
         <el-main>
             <router-view />
         </el-main>
-        <el-footer>
-            <ConsentStatus />
-        </el-footer>
+        <ConsentStatus />
     </el-container>
     <CookieConsent />
     <sidebar/>
@@ -77,7 +75,9 @@ export default {
         }
     },
     mounted() {
-        this.toggleSidebar(this.open)
+        if (this.open) {
+            TweenLite.to('#el-container', 1, {css:{marginRight:300,autoRound:false}, ease:Power4.easeOut}).delay(2)
+        }
     },
     watch: {
       open: function (open) {
@@ -204,4 +204,7 @@ body {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 
+.el-notification{
+    z-index: 9999 !important;
+}
 </style>

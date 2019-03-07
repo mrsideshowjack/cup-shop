@@ -66,4 +66,10 @@ export default {
     max-width: 50vw;
     width: 100%;
 }
+
+@media screen and (max-width: 700px){
+    #consent-dashboard iframe {
+    max-width: 95vw;
+    }
+}
 </style>
