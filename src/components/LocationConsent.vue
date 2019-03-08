@@ -57,8 +57,9 @@ export default {
             return this.$store.state.consentuaConsents;
         },
         isconsent: function () {
-            if (this.consents.length >= 1) {
-                return this.consents.find(x => x.id === '326').consent 
+            let template = this.consents.find(x => x.id === '326') || [];
+            if (this.consents.length >= 1 && template) {
+                return template.consent 
             } else{
                 return false;
             }
