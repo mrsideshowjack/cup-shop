@@ -2,7 +2,7 @@
 <div id="Newsletter">
     <i class="el-icon-message"></i>
     <h1>Join the Newsletter!</h1>
-    <p>Get the latest news and disscusion about the world of paper cups! 🥤</p>
+    <p>Get the latest news and discussion about the world of paper cups! 🥤</p>
     <p>(this form is a demonstration, the input is not used in any way)</p>
     <el-input
     placeholder="email address"
