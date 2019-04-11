@@ -29,13 +29,13 @@
     </section>
     <section v-show="pages.page7">
         <h2>Behind the Scenes</h2>
-        <p>Look proof that consent is recorded.  Hook this up to your backend systems</p>
+        <p>Look, proof that consent is recorded.  Hook this up to your backend systems</p>
         <span><i>Templates: </i>'63','100','98'</span>
         <!-- <span><i>Consent Receipt Id: </i></span> -->
         <div id="btn-group">
             <el-button type="warning" size="small" plain @click="clearConsentuaUID">New Consentua UID</el-button>
             <router-link to="/consentua-test">
-                <el-button size="small" plain>Consetua API test page</el-button>
+                <el-button size="small" plain>Consentua API test page</el-button>
             </router-link>
             <router-link to="/map">
                 <el-button size="small" plain>Location Map test page</el-button>
